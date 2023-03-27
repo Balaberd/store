@@ -1,0 +1,70 @@
+@import "./vars.scss";
+
+@mixin button-icon($diameter, $color-icon, $color-background) {
+  min-width: $diameter;
+  min-height: $diameter;
+  max-width: $diameter;
+  max-height: $diameter;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  fill: $color-icon;
+  stroke: $color-icon;
+
+  background-color: $color-background;
+
+  border-radius: 100%;
+}
+
+@mixin button($padding, $gap, $color, $color-background) {
+  padding: $padding;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
+
+  color: $color;
+  fill: $color;
+  stroke: $color;
+
+  background-color: $color-background;
+
+  border-radius: 36px;
+}
+
+@mixin delimitedRowList($rangeBetween, $height) {
+  @media (min-width: $width-mobile) {
+    display: flex;
+    align-items: center;
+
+    & > *:nth-last-child(n) {
+      display: flex;
+    }
+
+    & > *:nth-last-child(n + 2) {
+      position: relative;
+      margin-right: $rangeBetween;
+
+      @media (max-width: $width-tablet) {
+        margin-right: $rangeBetween / 2;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        height: $height;
+        border-right: 1px dotted $color-2;
+        opacity: 0.2;
+        top: calc((100% - $height) / 2);
+        right: $rangeBetween / 2 * -1 - 4px;
+
+        @media (max-width: $width-tablet) {
+          right: ($rangeBetween / 2 * -1 - 4px) / 2;
+        }
+      }
+    }
+  }
+}

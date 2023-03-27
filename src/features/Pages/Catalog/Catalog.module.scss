@@ -1,0 +1,46 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/templates.scss";
+
+/*** *** *** main markup *** *** ***/
+
+._ {
+  @extend %template-container;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+.title {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.contentWrapper {
+  margin-top: 30px;
+  display: flex;
+  gap: 108px;
+
+  @media (max-width: $width-container) {
+    gap: 20px;
+  }
+
+  @media (max-width: $width-mobile) {
+    flex-direction: column;
+  }
+}
+
+/*** *** *** mixin markup *** *** ***/
+
+.mobileSorter {
+  display: none;
+
+  @media (max-width: $width-mobile) {
+    display: flex;
+    margin-top: 15px;
+  }
+}

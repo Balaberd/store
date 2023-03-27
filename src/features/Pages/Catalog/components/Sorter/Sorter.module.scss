@@ -1,0 +1,64 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/templates.scss";
+
+._ {
+  display: flex;
+  position: relative;
+  gap: 5px;
+}
+
+.title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+
+.dropdownTriggerButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: $color-2;
+
+  .isIncrease {
+    transform: rotate(180deg);
+  }
+}
+
+.dropdownWrapper {
+  padding: 10px 15px;
+  position: absolute;
+  top: 30px;
+  right: 5px;
+
+  background-color: $color-9;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+
+  border-radius: 7px;
+
+  z-index: 5;
+
+  @extend %template-box-shadow;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+
+  font-size: 16px;
+
+  .radio {
+    display: none;
+  }
+
+  .radio:checked ~ .dropdownItemText {
+    font-weight: 700;
+  }
+}

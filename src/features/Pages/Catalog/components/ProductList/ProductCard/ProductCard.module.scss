@@ -1,0 +1,96 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/templates.scss";
+
+._ {
+  padding: 29px 21px;
+  max-height: 550px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border-radius: 10px;
+
+  @extend %template-box-shadow;
+
+  line-height: 21px;
+}
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+}
+.image {
+  max-height: 220px;
+  align-self: center;
+}
+
+.sizeBlock {
+  margin-top: 4px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  .size {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+.nameBlock {
+  display: inline-block;
+  margin-top: 10px;
+  color: $color-1;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  .brand {
+    font-weight: 700;
+  }
+}
+
+.infoBlock {
+  margin-top: 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.infoItem {
+  &__title {
+    color: $color-2;
+    font-weight: 300;
+  }
+  &__content {
+    font-weight: 500;
+  }
+}
+
+.actionBlock {
+  margin-top: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.price {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.button {
+  padding: 13px 25px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 10px;
+  font-weight: 700;
+  color: $color-9;
+
+  background-color: $color-5;
+
+  border-radius: 80px;
+}

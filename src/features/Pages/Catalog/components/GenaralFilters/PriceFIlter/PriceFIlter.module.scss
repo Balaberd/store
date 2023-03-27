@@ -1,0 +1,40 @@
+@import "/src/scss/vars.scss";
+
+._ {
+  margin-top: 10px;
+}
+
+.title {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 300;
+}
+
+.inputsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 16px;
+}
+
+.input {
+  height: 23px;
+  width: 100px;
+  padding: 4px, 14px, 4px, 14px;
+
+  text-align: center;
+  font-size: 12px;
+  line-height: 17px;
+  font-weight: 300;
+
+  border-radius: 12px;
+
+  background-color: $color-10;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

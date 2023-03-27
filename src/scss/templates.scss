@@ -1,0 +1,15 @@
+@import "./vars.scss";
+
+%template-container {
+  width: $width-container;
+  margin: 0 auto;
+
+  @media (max-width: $width-container) {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
+
+%template-box-shadow {
+  box-shadow: 0 15px 10px 0px rgba(43, 28, 1, 0.04);
+}

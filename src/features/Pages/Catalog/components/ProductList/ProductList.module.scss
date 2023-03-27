@@ -1,0 +1,18 @@
+@import "/src/scss/vars.scss";
+._ {
+  width: 1020px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 21px;
+
+  @media (max-width: $width-container) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: $width-mobile) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+  }
+}

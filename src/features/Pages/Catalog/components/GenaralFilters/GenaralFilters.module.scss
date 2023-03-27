@@ -1,0 +1,45 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/mixins.scss";
+
+._ {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-top: 20px;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttonsBlock {
+  margin-top: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .applyFilteres {
+    @include button(21px 51px, 0, $color-9, $color-5);
+  }
+  .resetFilters {
+    @include button-icon(59px, $color-9, $color-5);
+  }
+}
+
+.dropdownTrigger {
+  display: none;
+
+  @media (max-width: $width-mobile) {
+    @include button-icon(32px, $color-2, $color-10);
+  }
+
+  &_close {
+    transform: rotate(180deg);
+  }
+}

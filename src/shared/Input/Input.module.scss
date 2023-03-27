@@ -1,0 +1,27 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/mixins.scss";
+
+._ {
+  height: 59px;
+
+  padding-left: 20px;
+  padding-right: 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 36px;
+
+  background-color: $color-8;
+}
+
+.input {
+  height: 18px;
+  width: 100%;
+}
+
+.defaultButton {
+  @include button-icon(39px, $color-9, $color-5);
+}

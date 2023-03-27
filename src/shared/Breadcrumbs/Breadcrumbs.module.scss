@@ -1,0 +1,23 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/mixins.scss";
+
+._ {
+  display: flex;
+  align-items: center;
+
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 300px;
+
+  @include delimitedRowList(20px, 16px);
+
+  margin-top: 45px;
+}
+
+.link {
+  color: $color-2;
+
+  &_last {
+    opacity: 0.5;
+  }
+}
