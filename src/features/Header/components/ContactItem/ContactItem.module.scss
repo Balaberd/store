@@ -1,0 +1,26 @@
+@import "/src/scss/vars.scss";
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  @media (max-width: $width-tablet) {
+    gap: 10px;
+  }
+
+  .title {
+    color: $color-1;
+    font-weight: 600;
+  }
+
+  .description {
+    color: $color-2;
+  }
+  .additionalDescription {
+    font-size: 12px;
+    display: inline-block;
+    margin-top: 5px;
+    color: $color-2;
+  }
+}

@@ -1,0 +1,113 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/mixins.scss";
+
+._ {
+  height: 430px;
+
+  padding: 50px 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px dotted $color-2;
+    opacity: 0.2;
+  }
+
+  @media (max-width: $width-mobile) {
+    height: auto;
+    padding: 0;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.imageWrapper {
+  height: 100%;
+  width: 280px;
+
+  .image {
+    width: 100%;
+  }
+}
+
+.descriptionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .sizeBlock {
+    margin-top: 4px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .size {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+
+  .nameBlock {
+    max-width: 480px;
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 700;
+  }
+
+  .description {
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 300;
+
+    color: $color-2;
+  }
+}
+
+.actionBlock {
+  display: flex;
+  gap: 80px;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: $width-mobile) {
+    gap: 40px;
+    margin: 20px 0;
+  }
+
+  .changeNumbers {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    color: $color-2;
+    font-weight: 500;
+
+    .button {
+      width: 34px;
+      height: 23px;
+
+      line-height: 15px;
+      background-color: $color-5;
+
+      border-radius: 24px;
+    }
+  }
+  .price {
+    font-size: 30px;
+    line-height: 39px;
+    font-weight: 700;
+  }
+  .removeWithoutBasket {
+    @include button-icon(59px, $color-9, $color-5);
+  }
+}

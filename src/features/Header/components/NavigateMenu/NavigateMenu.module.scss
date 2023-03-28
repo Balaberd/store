@@ -1,0 +1,38 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/templates.scss";
+@import "/src/scss/mixins.scss";
+
+
+.menuList {
+  @include delimitedRowList(60px, 29px);
+
+  @media (max-width: $width-mobile) {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.link {
+  color: $color-2;
+  line-height: 21px;
+
+  @media (max-width: $width-tablet) {
+    font-size: 12px;
+  }
+  @media (max-width: $width-mobile) {
+    font-size: 14px;
+  }
+}
+
+.title {
+  display: none;
+
+  @media (max-width: $width-mobile) {
+    display: block;
+    color: $color-2;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 25px 0;
+  }
+}

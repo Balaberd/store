@@ -1,6 +1,15 @@
-._ {
-  background-color: green;
+@import "/src/scss/vars.scss";
 
-  fill: red;
-  stroke: red;
+.desktop {
+  @media (max-width: $width-mobile) {
+    display: none;
+  }
+}
+
+.mobile {
+  display: none;
+
+  @media (max-width: $width-mobile) {
+    display: block;
+  }
 }

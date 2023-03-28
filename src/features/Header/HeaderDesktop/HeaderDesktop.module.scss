@@ -1,0 +1,52 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/mixins.scss";
+@import "/src/scss/templates.scss";
+
+._ {
+  @extend %template-container;
+}
+
+.firstRow {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid rgba(63, 78, 101, 0.2);
+}
+
+.secondRow {
+  height: 108px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  border-bottom: 1px solid rgba(63, 78, 101, 0.2);
+
+  .rightList {
+    @include delimitedRowList(50px, 49px);
+  }
+}
+
+.logo {
+  @media (max-width: $width-tablet) {
+    width: 120px;
+  }
+}
+
+.contactsBlock {
+  @include delimitedRowList(40px, 100%);
+}
+
+.buttonDownload {
+  @include button(21px 40px, 10px, $color-9, $color-5);
+
+  @media (max-width: $width-container) {
+    @include button(21px 20px, 10px, $color-9, $color-5);
+  }
+  @media (max-width: $width-tablet) {
+    width: 140px;
+  }
+}

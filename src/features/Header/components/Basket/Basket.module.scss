@@ -1,0 +1,60 @@
+@import "/src/scss/vars.scss";
+
+.basket {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.buttonBasket {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.goodsCount {
+  position: absolute;
+  top: 0;
+  right: -18%;
+
+  width: 26px;
+  height: 26px;
+
+  display: none;
+
+  background-color: $color-6;
+
+  border-radius: 100%;
+  border: 3px solid $color-9;
+
+  font-size: 14px;
+  font-weight: 700;
+  color: $color-9;
+
+  &_visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: $width-tablet) {
+    display: none;
+  }
+}
+
+.title {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 18px;
+  color: $color-2;
+}
+
+.sum {
+  font-weight: 600;
+}

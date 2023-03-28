@@ -1,0 +1,22 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/templates.scss";
+
+._ {
+  @extend %template-container;
+}
+
+.title {
+  margin-top: 50px;
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+
+  @media (max-width: $width-mobile) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.itemsList {
+  margin-top: 50px;
+}

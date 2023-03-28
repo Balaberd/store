@@ -12,6 +12,10 @@
   @include delimitedRowList(20px, 16px);
 
   margin-top: 45px;
+
+  @media (max-height: $width-mobile) {
+    display: none;
+  }
 }
 
 .link {

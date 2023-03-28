@@ -1,0 +1,21 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/mixins.scss";
+
+.catalogAndSerachBlock {
+  width: 34.5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttonCatalog {
+  @include button(21px 54px, 10px, $color-9, $color-5);
+
+  @media (max-width: $width-tablet) {
+    @include button(21px 20px, 10px, $color-9, $color-5);
+  }
+}
+
+.search {
+  width: 56%;
+}

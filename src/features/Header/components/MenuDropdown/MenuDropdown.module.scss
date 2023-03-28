@@ -1,0 +1,54 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/templates.scss";
+@import "/src/scss/mixins.scss";
+
+._ {
+}
+
+.triggerButton {
+  @include button-icon(32px, $color-9, $color-5);
+}
+
+.menu {
+  position: absolute;
+  top: 100px;
+  left: 0;
+
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+
+  z-index: 10;
+
+  background-color: white;
+
+  @extend %template-box-shadow;
+  @extend %template-container;
+}
+
+.contactsBlock {
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  position: relative;
+
+  &:after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-bottom: 1px dotted $color-2;
+    opacity: 0.2;
+  }
+}
+
+.downloadButton {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  @include button(26.5px 70px, 10px, $color-9, $color-5);
+  max-width: 300px;
+}

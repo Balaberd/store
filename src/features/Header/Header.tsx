@@ -1,13 +1,18 @@
 import { FC } from "react";
-import { Input } from "../../shared/Input/Input";
+import { HeaderDesktop } from "./HeaderDesktop/HeaderDesktop";
+import { HeaderMobile } from "./HeaderMobile/HeaderMobile";
 import styles from "./Header.module.scss";
+import { IBasket } from "../App";
 
-export const Header: FC = () => {
+interface Props {
+    basket: IBasket;
+}
 
+export const Header: FC<Props> = ({ basket }) => {
     return (
-        <div className={styles._}>
-            HEADER
-            <Input />
-        </div>
+        <>
+            <HeaderDesktop className={styles.desktop} basket={basket} />
+            <HeaderMobile className={styles.mobile} basket={basket} />
+        </>
     )
 }

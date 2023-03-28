@@ -1,0 +1,45 @@
+@import "/src/scss/vars.scss";
+
+.callbackOrder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.descriptionBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.phoneNumber {
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.workTime {
+  font-weight: 12px;
+  line-height: 18px;
+  font-weight: 300;
+}
+
+.linkToOrder {
+  font-weight: 10px;
+  line-height: 15px;
+  font-weight: 300;
+
+  color: $color-2;
+  text-decoration: underline;
+}
+
+.image {
+  width: 74px;
+  height: 90px;
+  background: url("./../../../../public/assets/images/operator.png") 50% 50% no-repeat;
+  border-radius: 50%;
+
+  @media (max-width: $width-tablet) {
+    display: none;
+  }
+}

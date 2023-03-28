@@ -18,6 +18,7 @@ import { ReactComponent as IconBox } from "../../public/assets/icons/box.svg";
 import { ReactComponent as IconBottle } from "../../public/assets/icons/bottle.svg";
 import { ReactComponent as IconArrowDown } from "../../public/assets/icons/arrowDown.svg";
 import { ReactComponent as IconBin } from "../../public/assets/icons/bin.svg";
+import { ReactComponent as IconShare } from "../../public/assets/icons/share.svg";
 
 
 interface IconMap {
@@ -42,6 +43,7 @@ const ICON_MAP: IconMap = {
     bottle: IconBottle,
     arrowDown: IconArrowDown,
     bin: IconBin,
+    share: IconShare,
 
 };
 
