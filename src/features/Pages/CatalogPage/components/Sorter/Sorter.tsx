@@ -2,29 +2,35 @@ import { FC, useState } from "react";
 import { Icon } from "../../../../../shared/Icon/Icon";
 import cn from "classnames";
 import styles from "./Sorter.module.scss";
+import { useAppDispatch, useAppSelector } from "../../../../../hooks/redux";
+import { changeSortType, toggleSortDirection } from "../../../../../store/reducers/filteresSlice";
+import { TSorterType } from "../../../../../types/types";
 
-
-interface SortType {
-  sortBy: string;
-  isIncreaseSorting: boolean;
-}
 
 interface Props {
-  handleChangeSortSettings: (type: "name" | "price") => void;
-  sortSettings: SortType;
   className?: string;
 }
 
-export const Sorter: FC<Props> = ({ className, handleChangeSortSettings, sortSettings }) => {
+export const Sorter: FC<Props> = ({ className }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const onToggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const { sortBy, isIncreaseSorting } = sortSettings;
+  const dispatch = useAppDispatch();
 
-  const sortTranslatedName = sortBy === "name" ? "Название" : "Цена";
+  const { sortBy, isIncreaseSorting } = useAppSelector(state => state.filteres);
+
+
+  const handleChangeSortSettings = (newType: TSorterType) => {
+    if (newType === sortBy) {
+      dispatch(toggleSortDirection())
+    } else {
+      dispatch(changeSortType(newType));
+    }
+  }
+
+  const translatedSortTypeName = sortBy === "name" ? "Название" : "Цена";
 
   return (
     <div className={cn(styles._, className)}>
@@ -33,7 +39,7 @@ export const Sorter: FC<Props> = ({ className, handleChangeSortSettings, sortSet
         onClick={onToggleDropdown}
         className={styles.dropdownTriggerButton}
       >
-        {sortTranslatedName}
+        {translatedSortTypeName}
         <Icon
           iconName="arrowDown"
           className={cn({ [styles.isIncrease]: isIncreaseSorting })}
@@ -49,8 +55,8 @@ export const Sorter: FC<Props> = ({ className, handleChangeSortSettings, sortSet
               name="sort-type"
               checked={sortBy === "name"}
               onClick={() => {
-                handleChangeSortSettings("name")
-                onToggleDropdown()
+                handleChangeSortSettings("name");
+                onToggleDropdown();
               }}
             />
             <span className={styles.dropdownItemText}>Наименование</span>

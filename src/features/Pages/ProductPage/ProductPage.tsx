@@ -1,18 +1,17 @@
 import { FC } from "react";
 import { useLocation } from "react-router-dom";
-import { productsMock } from "../../../MOCK/MOCK";
 import { Breadcrumbs } from "../../../shared/Breadcrumbs/Breadcrumbs";
-import { Icon } from "../../../shared/Icon/Icon";
-import { ICON_NAME_MAP } from "../CatalogPage/components/ProductList/ProductCard/ProductCard";
+import { ProductSize } from "../../../shared/ProductSize/ProductSize";
+import { getProductById } from "../../../store/selectors";
 import styles from "./ProductPage.module.scss";
 
 
 export const ProductPage: FC = () => {
+
     const id = useLocation().state.productId
+    const product = getProductById(+id)
 
-    const productData = productsMock.find(product => product.id === +id);
-
-    if (productData) {
+    if (product) {
         return (
             <div className={styles._}>
                 <Breadcrumbs />
@@ -20,34 +19,31 @@ export const ProductPage: FC = () => {
 
                     <img
                         className={styles.image}
-                        alt={productData.description}
-                        src={productData.url}
+                        alt={product.description}
+                        src={product.url}
                     />
 
                     <div className={styles.productInfo}>
                         <div className={styles.title}>
-                            {productData?.name} {productData.brand} {productData.description}
+                            {product?.name} {product.brand} {product.description}
                         </div>
 
-                        <div className={styles.sizeBlock}>
-                            <Icon iconName={ICON_NAME_MAP[productData.sizeType]} />
-                            <span className={styles.size}>{productData.size}</span>
-                        </div>
+                        <ProductSize type={product.sizeType} value={product.size} />
 
                         <div className={styles.descriptionBlock}>
                             <div className={styles.descriptionItem}>
                                 <span className={styles.descriptionTitle}>Страна производитель: </span>
-                                <span className={styles.content}>{productData.manufacturerСountry}</span>
+                                <span className={styles.content}>{product.producingСountries}</span>
                             </div>
 
                             <div className={styles.descriptionItem}>
                                 <span className={styles.descriptionTitle}>Брэнд: </span>
-                                <span className={styles.content}>{productData.brand}</span>
+                                <span className={styles.content}>{product.brand}</span>
                             </div>
 
                             <div className={styles.descriptionItem}>
                                 <span className={styles.descriptionTitle}>Описание: </span>
-                                <span className={styles.content}>{productData.description}</span>
+                                <span className={styles.content}>{product.description}</span>
                             </div>
                         </div>
 

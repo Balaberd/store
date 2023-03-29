@@ -1,25 +1,22 @@
 import { FC } from "react";
-import { IProduct } from "../../../../../types/types";
-import { IBasket } from "../../../../App";
+import { useAppDispatch, useAppSelector } from "../../../../../hooks/redux";
+import { addItemToBasket, refreshLocalStorageBasket } from "../../../../../store/reducers/basketSlice";
+import { getFilteredAndSortedProducts } from "../../../../../store/selectors";
 import { ProductCard } from "./ProductCard/ProductCard";
 import styles from "./ProductList.module.scss";
 
-interface Props {
-  products: IProduct[];
-  basket: IBasket;
-  setBasket: (state: IBasket) => void;
 
-}
+export const ProductList: FC = () => {
 
-export const ProductList: FC<Props> = ({ products, basket, setBasket }) => {
+  const products = getFilteredAndSortedProducts();
+  const basket = useAppSelector(state => state.basket);
+  const productsIdInBasket = Object.keys(basket).map(el => +el);
 
-  const addProductToBasket = (id: number) => {
-    const newValue = basket[id] ? ++basket[id] : 1;
-    const newState = { ...basket, [id]: newValue }
-    setBasket(newState)
+  const dispatch = useAppDispatch();
+  const addItemToBasketHandler = (id: number) => {
+    dispatch(addItemToBasket((String(id))));
+    dispatch(refreshLocalStorageBasket());
   }
-
-  const productsInBasket = Object.keys(basket).map(el => +el);
 
   return (
     <div className={styles._}>
@@ -27,8 +24,8 @@ export const ProductList: FC<Props> = ({ products, basket, setBasket }) => {
         <ProductCard
           key={product.id}
           product={product}
-          addProductToBasket={addProductToBasket}
-          isInBasket={productsInBasket.includes(product.id)}
+          hasInBasket={productsIdInBasket.includes(product.id)}
+          onButtonClick={addItemToBasketHandler}
         />
       ))}
     </div>

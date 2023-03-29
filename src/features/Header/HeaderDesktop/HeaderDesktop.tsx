@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { Icon } from "../../../shared/Icon/Icon";
 import { Basket } from "../components/Basket/Basket";
 import { CallbackOrder } from "../components/CallbackOrder/CallbackOrder";
@@ -7,16 +7,12 @@ import { CatalogAndSearch } from "../components/CatalogAndSearch/CatalogAndSearc
 import { ContactItem } from "../components/ContactItem/ContactItem";
 import cn from "classnames";
 import styles from "./HeaderDesktop.module.scss";
-import { IBasket } from "../../App";
-
-
 
 interface Props {
     className?: string;
-    basket: IBasket
 }
 
-export const HeaderDesktop: React.FC<Props> = ({ className, basket }) => {
+export const HeaderDesktop: FC<Props> = ({ className }) => {
     return (
         <header className={cn(styles._, className)}>
             <div className={styles.firstRow}>
@@ -45,7 +41,7 @@ export const HeaderDesktop: React.FC<Props> = ({ className, basket }) => {
                     >
                         Прайс-лист <Icon iconName="download" />
                     </button>
-                    <Basket className={styles.basket} basket={basket} />
+                    <Basket className={styles.basket} />
                 </div>
             </div>
         </header>

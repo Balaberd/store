@@ -1,4 +1,5 @@
 @import "/src/scss/vars.scss";
+@import "/src/scss/mixins.scss";
 @import "/src/scss/templates.scss";
 
 ._ {
@@ -19,4 +20,51 @@
 
 .itemsList {
   margin-top: 50px;
+}
+
+.sumPriceBlock {
+  padding-top: 50px;
+
+  display: grid;
+  grid-template-areas: "placeAnOrderButton sumPrice";
+  justify-content: space-between;
+
+  position: relative;
+
+  @media (max-width: $width-mobile) {
+    padding-top: 25px;
+    height: auto;
+    flex-direction: column;
+    gap: 25px;
+    grid-template-areas: "sumPrice" "placeAnOrderButton";
+    justify-content: center;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px dotted $color-2;
+    opacity: 0.2;
+  }
+}
+
+.placeAnOrderButton {
+  @include button(21px 37.5px, 0, $color-9, $color-6);
+
+  line-height: 17px;
+  font-weight: 700;
+
+  grid-area: placeAnOrderButton;
+}
+
+.sumPrice {
+  font-size: 30px;
+  line-height: 39px;
+  font-weight: 700;
+
+  grid-area: sumPrice;
+  text-align: center;
 }

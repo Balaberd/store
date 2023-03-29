@@ -1,39 +1,41 @@
-export type TProductTypesByApply = "body" | "face" | "hands" | "wash" | "cosmetics" | "hair" | "feet";
+export type TTypeOfProductApplications =
+    | "body"
+    | "face"
+    | "hands"
+    | "wash"
+    | "cosmetics"
+    | "hair"
+    | "feet";
 
-export type TFilterTypes = "manufacturerСountry" | "brand";
+export type TPrice = number | null;
+
+export type TSorterType = "name" | "price";
+
+export interface IFilteres {
+    priceFrom: TPrice;
+    priceTo: TPrice;
+    brands: string[];
+    productApplyingTypes: TTypeOfProductApplications[];
+    producerСountries: string[];
+    sortBy: TSorterType;
+    isIncreaseSorting: boolean;
+}
+
+export type TSizeType = "volume" | "weight";
 
 export interface IProduct {
     id: number;
     name: string;
-    sizeType: string;
+    sizeType: TSizeType;
     size: number;
-    manufacturerСountry: string;
+    producingСountries: string;
     brand: string;
     description: string;
     price: number;
-    applying: TProductTypesByApply[];
+    typesOfApplication: TTypeOfProductApplications[];
     url: any;
 }
 
-type PriceType = {
-    from: number | null;
-    to: number | null;
-}
-export interface IFilteres {
-    price: PriceType;
-    brand: string[];
-    applying: TProductTypesByApply[];
-    manufacturerСountry: string[];
-}
-
-export type TypesOfSort = "price" | "name";
-export interface ISorter {
-    sortBy: TypesOfSort;
-    isIncreaseSorting: boolean;
-}
-
-export interface IDataForFilteres {
-    brandsList: string[];
-    manufacturerСountrysList: string[];
-    productTypesByApply: TProductTypesByApply[];
+export interface IBasket {
+    [key: string]: number;
 }

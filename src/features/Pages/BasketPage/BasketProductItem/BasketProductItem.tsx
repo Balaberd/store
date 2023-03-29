@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Icon } from "../../../../shared/Icon/Icon";
+import { getProductCountInBasket } from "../../../../store/selectors";
 import { IProduct } from "../../../../types/types";
-import { IBasket } from "../../../App";
 import styles from "./BasketProductItem.module.scss";
 
 export const ICON_NAME_MAP: any = {
@@ -10,33 +10,16 @@ export const ICON_NAME_MAP: any = {
 }
 
 interface Props {
-    basket: IBasket;
     product: IProduct;
-    setBasket: (state: IBasket) => void;
+    increaseItemHandler: (id: number) => void;
+    decreaseItemHandler: (id: number) => void;
+    removeProductFromBasketHandler: (id: number) => void;
 }
 
+export const BasketProductItem: FC<Props> = ({ product, increaseItemHandler, decreaseItemHandler, removeProductFromBasketHandler }) => {
 
-export const BasketProductItem: FC<Props> = ({ product, basket, setBasket }) => {
-
-    const removeProductHandler = () => {
-        const newBasket = { ...basket };
-        delete newBasket[product.id]
-        setBasket(newBasket)
-    }
-
-    const inreaseProductCountHandler = () => {
-        setBasket({ ...basket, [product.id]: ++basket[product.id] })
-    }
-
-    const decreaseProductCountHandler = () => {
-        if (basket[product.id] > 1) {
-            setBasket({ ...basket, [product.id]: --basket[product.id] })
-        } else {
-            removeProductHandler()
-        }
-    }
-
-
+    const productCount = getProductCountInBasket(product.id);
+    const productSumPrice = productCount * product.price;
 
     return (
         <div className={styles._}>
@@ -63,20 +46,20 @@ export const BasketProductItem: FC<Props> = ({ product, basket, setBasket }) => 
             <div className={styles.actionBlock}>
 
                 <div className={styles.changeNumbers}>
-                    <button onClick={decreaseProductCountHandler} className={styles.button}>
+                    <button onClick={() => decreaseItemHandler(product.id)} className={styles.button}>
                         -
                     </button>
-                    {basket[product.id]}
-                    <button onClick={inreaseProductCountHandler} className={styles.button}>
+                    {productCount}
+                    <button onClick={() => increaseItemHandler(product.id)} className={styles.button}>
                         +
                     </button>
                 </div>
 
-                <div className={styles.price}>
-                    {product.price} Р
-                </div>
+                <span className={styles.price}>
+                    {productSumPrice} Р
+                </span>
 
-                <button onClick={removeProductHandler} className={styles.removeWithoutBasket}>
+                <button onClick={() => removeProductFromBasketHandler(product.id)} className={styles.removeWithoutBasket}>
                     <Icon iconName="bin" />
                 </button>
 

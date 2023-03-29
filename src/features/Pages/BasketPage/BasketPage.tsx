@@ -1,20 +1,35 @@
 import { FC } from "react";
-import { productsMock } from "../../../MOCK/MOCK";
+import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
 import { Breadcrumbs } from "../../../shared/Breadcrumbs/Breadcrumbs";
+import { addItemToBasket, refreshLocalStorageBasket, removeItemFromBasket, removeProductFromBasket } from "../../../store/reducers/basketSlice";
+import { getProdcutsIdInBasket } from "../../../store/selectors";
 import { IProduct } from "../../../types/types";
-import { IBasket } from "../../App";
 import styles from "./BasketPage.module.scss";
 import { BasketProductItem } from "./BasketProductItem/BasketProductItem";
 
-interface Props {
-    basket: IBasket;
-    setBasket: (state: IBasket) => void;
-}
+export const BasketPage: FC = () => {
 
-export const BasketPage: FC<Props> = ({ basket, setBasket }) => {
+    const productsInBasket = getProdcutsIdInBasket();
+    const basket = useAppSelector(state => state.basket);
 
-    const productsIdInBasket = Object.keys(basket).map(el => +el);
-    const productsInBasket = productsMock.filter(el => productsIdInBasket.includes(el.id))
+    const sumPrice = productsInBasket.reduce((acc, product) => {
+        return acc + (product.price * basket[product.id])
+    }, 0)
+
+    const dispatch = useAppDispatch();
+
+    const increaseItemHandler = (id: number) => {
+        dispatch(addItemToBasket(String(id)));
+        dispatch(refreshLocalStorageBasket());
+    }
+    const decreaseItemHandler = (id: number) => {
+        dispatch(removeItemFromBasket(String(id)));
+        dispatch(refreshLocalStorageBasket());
+    }
+    const removeProductFromBasketHandler = (id: number) => {
+        dispatch(removeProductFromBasket(String(id)));
+        dispatch(refreshLocalStorageBasket());
+    }
 
     return (
         <div className={styles._}>
@@ -23,9 +38,25 @@ export const BasketPage: FC<Props> = ({ basket, setBasket }) => {
 
             <div className={styles.itemsList}>
                 {productsInBasket.map((product: IProduct) => (
-                    <BasketProductItem product={product} basket={basket} setBasket={setBasket} />
+                    <BasketProductItem
+                        product={product}
+                        increaseItemHandler={increaseItemHandler}
+                        decreaseItemHandler={decreaseItemHandler}
+                        removeProductFromBasketHandler={removeProductFromBasketHandler}
+                    />
                 ))}
             </div>
+
+            <div className={styles.sumPriceBlock}>
+                <button className={styles.placeAnOrderButton}>
+                    Оформить заказ
+                </button>
+
+                <span className={styles.sumPrice}>
+                    {sumPrice} Р
+                </span>
+            </div>
+
         </div>
     )
 }

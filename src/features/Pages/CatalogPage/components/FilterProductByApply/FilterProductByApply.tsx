@@ -1,46 +1,37 @@
 import { FC } from "react";
-import { IFilteres, TProductTypesByApply } from "../../../../../types/types";
-import { APPLYING_TYPES_TRANSLATE } from "../../../../lib/const";
+import { APPLYING_TYPES_TRANSLATE, listOfProductApplicationTypes } from "../../../../lib/const";
 import cn from "classnames";
 import styles from "./FilterProductByApply.module.scss";
+import { useAppDispatch, useAppSelector } from "../../../../../hooks/redux";
+import { TTypeOfProductApplications } from "../../../../../types/types";
+import { toggleApplicationFilterValue } from "../../../../../store/reducers/filteresSlice";
 
 interface Props {
-  filteres: IFilteres;
-  handleChangeFilters: (arg: IFilteres) => void;
-  productTypesByApply: Array<TProductTypesByApply>,
   className?: string;
   isColumnList?: boolean
 }
 
 export const FilterProductByApply: FC<Props> = ({
-  filteres,
-  handleChangeFilters,
-  productTypesByApply,
   className,
   isColumnList,
 }) => {
 
-  const onChangeFilterByApply = (type: TProductTypesByApply) => {
-    if (filteres.applying.includes(type)) {
-      const newParams = [...filteres.applying].filter((el) => el !== type);
+  const dispatch = useAppDispatch();
 
-      handleChangeFilters({ ...filteres, applying: newParams });
-    } else {
-      handleChangeFilters({
-        ...filteres,
-        applying: [...filteres.applying, type],
-      });
-    }
-  };
+  const activeFiterTypesOfApplication = useAppSelector(state => state.filteres.productApplyingTypes);
+
+  const onChangeFilterByApply = (type: TTypeOfProductApplications) => {
+    dispatch(toggleApplicationFilterValue(type));
+  }
 
   return (
     <div className={cn(styles._, className, { [styles.isColumn]: isColumnList })}>
-      {productTypesByApply.map((el: TProductTypesByApply) => (
+      {listOfProductApplicationTypes.map((el) => (
         <label className={styles.item} key={el}>
           <input
             className={styles.checkbox}
             type="checkbox"
-            checked={filteres.applying.includes(el)}
+            checked={activeFiterTypesOfApplication.includes(el)}
             onChange={() => onChangeFilterByApply(el)}
           />
           <span className={styles.title}>{APPLYING_TYPES_TRANSLATE[el]}</span>

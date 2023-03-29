@@ -1,28 +1,35 @@
 import { FC, useState } from "react";
 import { Icon } from "../../../../../shared/Icon/Icon";
-import { IDataForFilteres, IFilteres } from "../../../../../types/types";
-import { defaultFiltersState } from "../../CatalogPage";
-import { FilterItem } from "./FilterItem/FilterItem";
+import { FilterByProductProp } from "./FilterItem/FilterByProductProp";
 import { PriceFIlter } from "./PriceFIlter/PriceFIlter";
 import cn from "classnames";
 import styles from "./GenaralFilters.module.scss";
+import { useDispatch } from "react-redux";
+import { resetFilteres, toggleBrandFilterValue, toggleProducerСountryFilterValue } from "../../../../../store/reducers/filteresSlice";
+import { getUniqValuesInProduct } from "../../../../../store/selectors";
 
 
-interface Props {
-    filteres: IFilteres;
-    handleChangeFilters: (newValue: IFilteres) => void;
-    dataForFilteres: IDataForFilteres;
-}
 
-export const GenaralFilters: FC<Props> = ({ filteres, handleChangeFilters, dataForFilteres }) => {
+export const GenaralFilters: FC = () => {
     const [isVisible, setIsVisible] = useState(true);
-
     const onChangeVisibility = () => {
         setIsVisible(!isVisible)
     }
 
+    const { brands, producerСountries } = getUniqValuesInProduct()
+
+
+    const dispatch = useDispatch();
     const onResetFilteres = () => {
-        handleChangeFilters(defaultFiltersState)
+        dispatch(resetFilteres());
+    }
+
+    const handleToggleBrand = (value: string) => {
+        dispatch(toggleBrandFilterValue(value))
+    }
+
+    const handleToggleProducerСountries = (value: string) => {
+        dispatch(toggleProducerСountryFilterValue(value))
     }
 
     return (
@@ -39,23 +46,20 @@ export const GenaralFilters: FC<Props> = ({ filteres, handleChangeFilters, dataF
             </div>
             {isVisible && (
                 <div className={styles.content}>
-                    <PriceFIlter
-                        filteres={filteres}
-                        handleChangeFilters={handleChangeFilters}
+                    <PriceFIlter />
+
+                    <FilterByProductProp
+                        prop="brands"
+                        uniqPropValues={brands}
+                        onToggle={handleToggleBrand}
                     />
 
-                    <FilterItem
-                        filteres={filteres}
-                        handleChangeFilters={handleChangeFilters}
-                        dataForFilteres={dataForFilteres}
-                        filtrationType="brand"
-                    />
+                    <FilterByProductProp
 
-                    <FilterItem
-                        filteres={filteres}
-                        handleChangeFilters={handleChangeFilters}
-                        dataForFilteres={dataForFilteres}
-                        filtrationType="manufacturerСountry"
+                        prop="producerСountries"
+                        uniqPropValues={producerСountries}
+                        onToggle={handleToggleProducerСountries}
+
                     />
 
                     <div className={styles.buttonsBlock}>

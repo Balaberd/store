@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 
   position: relative;
 
@@ -79,6 +80,11 @@
   justify-content: space-between;
   align-items: center;
 
+  @media (max-width: $width-tablet) {
+    gap: 40px;
+    margin: 20px 0;
+  }
+
   @media (max-width: $width-mobile) {
     gap: 40px;
     margin: 20px 0;
@@ -91,6 +97,10 @@
 
     color: $color-2;
     font-weight: 500;
+
+    @media (max-width: $width-tablet) {
+      
+    }
 
     .button {
       width: 34px;
@@ -106,6 +116,7 @@
     font-size: 30px;
     line-height: 39px;
     font-weight: 700;
+    white-space: nowrap;
   }
   .removeWithoutBasket {
     @include button-icon(59px, $color-9, $color-5);
