@@ -23,13 +23,13 @@ export const App: FC = () => {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/catalog/:id" element={<ProductPage />} />
         <Route path="/basket" element={<BasketPage />} />
       </Routes>
-      <Footer />
+      <Footer /> */}
     </BrowserRouter>
   );
 };

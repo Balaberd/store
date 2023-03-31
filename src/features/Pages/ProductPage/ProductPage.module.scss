@@ -1,4 +1,5 @@
 @import "/src/scss/vars.scss";
+@import "/src/scss/mixins.scss";
 @import "/src/scss/templates.scss";
 
 ._ {
@@ -55,4 +56,82 @@
   .content {
     font-weight: 500;
   }
+}
+
+.actionsBlock {
+  display: grid;
+  gap: 10px;
+  justify-content: start;
+  align-content: center;
+  grid-template-areas:
+    "price price price increaseBlock increaseBlock increaseBlock addToBassket addToBassket . "
+    "share promo promo promo promo promo promo download download";
+}
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 39px;
+  white-space: nowrap;
+
+  grid-area: price;
+}
+
+.increaseAndDecreaseBlock {
+  font-weight: 500;
+  color: $color-2;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  grid-area: increaseBlock;
+}
+.actionButton {
+  padding: 4px 14px;
+  background-color: $color-10;
+  border-radius: 36px;
+}
+.count {
+}
+.addToBasketButton {
+  @include button(21px 39.5px, 12px, $color-9, $color-6);
+
+  grid-area: addToBassket;
+}
+.share {
+  min-width: 77px;
+  height: 77px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @extend %template-box-shadow;
+
+  grid-area: share;
+}
+.promo {
+  width: 305px;
+  padding: 20.5px 30.5px;
+
+  color: $color-2;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+
+  @extend %template-box-shadow;
+
+  grid-area: promo;
+}
+
+.download {
+  padding: 30px 37.5px;
+  width: 261px;
+
+  @extend %template-box-shadow;
+
+  grid-area: download;
 }

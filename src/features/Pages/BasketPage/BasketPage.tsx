@@ -34,28 +34,37 @@ export const BasketPage: FC = () => {
     return (
         <div className={styles._}>
             <Breadcrumbs />
+
             <h1 className={styles.title}>КОРЗИНА</h1>
 
-            <div className={styles.itemsList}>
-                {productsInBasket.map((product: IProduct) => (
-                    <BasketProductItem
-                        product={product}
-                        increaseItemHandler={increaseItemHandler}
-                        decreaseItemHandler={decreaseItemHandler}
-                        removeProductFromBasketHandler={removeProductFromBasketHandler}
-                    />
-                ))}
-            </div>
+            {!productsInBasket.length && (
+                <h2 className={styles.emptyBasket}>Корзина пуста</h2>
+            )}
 
-            <div className={styles.sumPriceBlock}>
-                <button className={styles.placeAnOrderButton}>
-                    Оформить заказ
-                </button>
+            {!!productsInBasket.length && (
+                <>
+                    <div className={styles.itemsList}>
+                        {productsInBasket.map((product: IProduct) => (
+                            <BasketProductItem
+                                product={product}
+                                increaseItemHandler={increaseItemHandler}
+                                decreaseItemHandler={decreaseItemHandler}
+                                removeProductFromBasketHandler={removeProductFromBasketHandler}
+                            />
+                        ))}
+                    </div>
 
-                <span className={styles.sumPrice}>
-                    {sumPrice} Р
-                </span>
-            </div>
+                    <div className={styles.sumPriceBlock}>
+                        <button className={styles.placeAnOrderButton}>
+                            Оформить заказ
+                        </button>
+
+                        <span className={styles.sumPrice}>
+                            {sumPrice} Р
+                        </span>
+                    </div>
+                </>
+            )}
 
         </div>
     )

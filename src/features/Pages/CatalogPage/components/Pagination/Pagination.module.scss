@@ -1,0 +1,38 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/mixins.scss";
+
+._ {
+  display: flex;
+  gap: 35px;
+}
+
+.actionButton {
+  width: 35px;
+  height: 35px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pages {
+  display: flex;
+  align-items: center;
+
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.pageButton {
+  width: 35px;
+  height: 35px;
+  color: $color-2;
+
+  &_active {
+    @include button-icon(35px, $color-2, $color-6);
+  }
+}
+
+.turned {
+  transform: rotate(180deg);
+}

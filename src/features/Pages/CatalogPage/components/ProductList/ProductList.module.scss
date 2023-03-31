@@ -1,5 +1,18 @@
 @import "/src/scss/vars.scss";
+
 ._ {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.nothingFound {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.listWrapper {
   width: 1020px;
 
   display: grid;

@@ -19,6 +19,8 @@ export interface IFilteres {
     producerСountries: string[];
     sortBy: TSorterType;
     isIncreaseSorting: boolean;
+    numberOfItemsPerPage: number,
+    currentPage: number,
 }
 
 export type TSizeType = "volume" | "weight";

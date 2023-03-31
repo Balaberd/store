@@ -13,6 +13,8 @@ const initialState: IFilteres = {
   producerСountries: [],
   sortBy: "name",
   isIncreaseSorting: true,
+  numberOfItemsPerPage: 6,
+  currentPage: 1,
 };
 
 const filtersSlice = createSlice({
@@ -67,6 +69,9 @@ const filtersSlice = createSlice({
     },
     toggleSortDirection(state) {
       state.isIncreaseSorting = !state.isIncreaseSorting;
+    },
+    changeCurrentPage(state, action) {
+      state.currentPage = action.payload;
     }
   },
 });
@@ -79,7 +84,8 @@ export const {
   resetFilteres,
   changeFilterPriceFrom,
   changeFilterPriceTo,
-  toggleSortDirection
+  toggleSortDirection,
+  changeCurrentPage
 } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

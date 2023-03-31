@@ -1,5 +1,84 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/templates.scss";
+@import "/src/scss/mixins.scss";
+
 ._ {
-  background-color: rgb(111, 113, 111);
-  height: 150px;
   margin-top: 100px;
+  padding: 71px 0 116px 0;
+
+  color: $color-9;
+  background-color: $color-2;
+}
+
+.wrapper {
+  @extend %template-container;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  .title {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+  }
+
+  .itemsList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .item {
+    line-height: 21px;
+    color: $color-9;
+  }
+}
+
+.downloadButton {
+  @include button(20px 51px, 5px, $color-9, $color-5);
+}
+
+.messagersBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.linksWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .subtitle {
+    font-weight: 600;
+  }
+  .description {
+    font-size: 12px;
+  }
+  .link {
+    color: $color-9;
+    font-size: 10px;
+    text-decoration: underline;
+  }
+}
+
+.storeDescription {
+  margin-top: 15px;
+  max-width: 320px;
+}
+.subscription {
+  .input {
+    margin-top: 15px;
+    max-width: 282px;
+  }
 }

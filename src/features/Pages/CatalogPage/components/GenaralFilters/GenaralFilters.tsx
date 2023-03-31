@@ -18,23 +18,20 @@ export const GenaralFilters: FC = () => {
 
     const { brands, producerСountries } = getUniqValuesInProduct()
 
-
     const dispatch = useDispatch();
-    const onResetFilteres = () => {
+
+    const resetFilteresHandler = () => {
         dispatch(resetFilteres());
     }
-
-    const handleToggleBrand = (value: string) => {
+    const toggleBrandHandler = (value: string) => {
         dispatch(toggleBrandFilterValue(value))
     }
-
-    const handleToggleProducerСountries = (value: string) => {
+    const toggleProducerСountriesHandler = (value: string) => {
         dispatch(toggleProducerСountryFilterValue(value))
     }
 
     return (
         <div className={styles._}>
-
             <div className={styles.title}>
                 ПОДБОР ПО ПАРАМЕТРАМ
                 <button
@@ -51,22 +48,20 @@ export const GenaralFilters: FC = () => {
                     <FilterByProductProp
                         prop="brands"
                         uniqPropValues={brands}
-                        onToggle={handleToggleBrand}
+                        onToggle={toggleBrandHandler}
                     />
 
                     <FilterByProductProp
-
                         prop="producerСountries"
                         uniqPropValues={producerСountries}
-                        onToggle={handleToggleProducerСountries}
-
+                        onToggle={toggleProducerСountriesHandler}
                     />
 
                     <div className={styles.buttonsBlock}>
                         <button className={styles.applyFilteres}>Показать</button>
                         <button
                             className={styles.resetFilters}
-                            onClick={onResetFilteres}
+                            onClick={resetFilteresHandler}
                         >
                             <Icon iconName="bin" />
                         </button>

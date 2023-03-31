@@ -25,7 +25,6 @@ export const PriceFIlter: FC = () => {
             <h4 className={styles.title}>Цена Р</h4>
 
             <div className={styles.inputsWrapper}>
-
                 <input
                     onChange={onChangeFilterPriceFrom}
                     value={priceFromForInput}
@@ -39,7 +38,6 @@ export const PriceFIlter: FC = () => {
                     className={styles.input}
                     type="number"
                 />
-
             </div>
 
         </div >

@@ -50,7 +50,6 @@ const sortByProp = (
   sortBy: TSorterType,
   isIncreaseSortDirecrion: boolean
 ) => {
-  // console.log(a, b, sortBy, isIncreaseSortDirecrion);
   if (a[sortBy] < b[sortBy]) {
     return isIncreaseSortDirecrion ? -1 : 1;
   }
@@ -81,9 +80,8 @@ export const getFilteredAndSortedProducts = () => {
   const isApplyingFilterActive = filteres.productApplyingTypes.length > 0;
   const isBrandFilterActive = filteres.brands.length > 0;
   const isCountryesFilterActive = filteres.producerСountries.length > 0;
-
   const isPriceFilterActive =
-    filteres.priceFrom !== null || filteres.priceFrom !== null;
+    filteres.priceFrom !== null || filteres.priceTo !== null;
 
   if (
     !isBrandFilterActive &&

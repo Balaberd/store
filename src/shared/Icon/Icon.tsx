@@ -19,6 +19,15 @@ import { ReactComponent as IconBottle } from "../../public/assets/icons/bottle.s
 import { ReactComponent as IconArrowDown } from "../../public/assets/icons/arrowDown.svg";
 import { ReactComponent as IconBin } from "../../public/assets/icons/bin.svg";
 import { ReactComponent as IconShare } from "../../public/assets/icons/share.svg";
+import { ReactComponent as PaginationArrow } from "../../public/assets/icons/paginationArrowLeft.svg";
+
+import { ReactComponent as IconMasterCard } from "../../public/assets/icons/master.svg";
+import { ReactComponent as IconVisa } from "../../public/assets/icons/visa.svg";
+import { ReactComponent as IconSultanLogoWhite } from "../../public/assets/icons/sultanLogoWhite.svg";
+import { ReactComponent as IconTelegram } from "../../public/assets/icons/telegram.svg";
+import { ReactComponent as IconWhatsap } from "../../public/assets/icons/whatsap.svg";
+
+
 
 
 interface IconMap {
@@ -44,7 +53,12 @@ const ICON_MAP: IconMap = {
     arrowDown: IconArrowDown,
     bin: IconBin,
     share: IconShare,
-
+    paginationArrow: PaginationArrow,
+    master: IconMasterCard,
+    visa: IconVisa,
+    sultanLogoWhite: IconSultanLogoWhite,
+    telegram: IconTelegram,
+    whatsap: IconWhatsap,
 };
 
 interface Props {
