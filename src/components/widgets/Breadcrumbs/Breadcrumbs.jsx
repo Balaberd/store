@@ -13,11 +13,12 @@ const PATH_MAP = {
   catalog: "/catalog",
 };
 
-
 export const Breadcrumbs = () => {
   const location = useLocation();
 
   const path = location.pathname.split("/").filter((el) => !!el);
+
+  console.log(path);
 
   // переделать позже
   const lastElement = path[path.length - 1];

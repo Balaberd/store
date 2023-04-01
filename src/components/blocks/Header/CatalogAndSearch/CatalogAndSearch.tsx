@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./CatalogAndSearch.module.scss";
-import cn from "classnames";
 import { Icon } from "../../../ui/Icon/Icon";
 import { Input } from "../../../ui/Input/Input";
+import cn from "classnames";
+import styles from "./CatalogAndSearch.module.scss";
 
 interface Props {
     className?: string;
@@ -21,16 +21,18 @@ export const CatalogAndSearch: FC<Props> = ({ className }) => {
     }
 
     return (
-        <div className={cn(styles.catalogAndSerachBlock, className)}>
+        <div className={cn(styles._, className)}>
+
             <Link to={"/catalog"} className={styles.buttonCatalog}>
                 Каталог <Icon iconName="catalog" />
             </Link>
+
             <Input
                 className={styles.search}
                 placeholder="Поиск..."
             />
 
-            <div className={styles.search_mobile}>
+            <div className={styles.mobileSearch}>
                 {!isActive && (
                     <button
                         onClick={onInputActivate}
@@ -42,7 +44,11 @@ export const CatalogAndSearch: FC<Props> = ({ className }) => {
                 )}
 
                 {isActive && (
-                    <input onBlur={onInputDeactivate} type="text" className={styles.input} />
+                    <input
+                        onBlur={onInputDeactivate}
+                        type="text"
+                        className={styles.input}
+                    />
                 )}
             </div>
 

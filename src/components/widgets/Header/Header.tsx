@@ -1,5 +1,4 @@
 import { FC } from "react";
-import styles from "./Header.module.scss";
 import { MenuDropdown } from "../../blocks/Header/MenuDropdown/MenuDropdown";
 import { ContactItem } from "../../blocks/Header/ContactItem/ContactItem";
 import { NavigateMenu } from "../../blocks/Header/NavigateMenu/NavigateMenu";
@@ -7,6 +6,7 @@ import { Icon } from "../../ui/Icon/Icon";
 import { CatalogAndSearch } from "../../blocks/Header/CatalogAndSearch/CatalogAndSearch";
 import { CallbackOrder } from "../../blocks/Header/CallbackOrder/CallbackOrder";
 import { Basket } from "../../blocks/Header/Basket/Basket";
+import styles from "./Header.module.scss";
 
 export const Header: FC = () => {
     return (

@@ -19,7 +19,6 @@ export const App: FC = () => {
     dispatch(getBasketFromLocalStorage());
   }, [])
 
-
   return (
     <BrowserRouter>
       <Header />

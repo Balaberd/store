@@ -27,10 +27,11 @@ export const Basket: FC<Props> = ({ className }) => {
 
 
     return (
-        <div className={cn(styles.basket, className)}>
+        <div className={cn(styles._, className)}>
 
             <Link to={"/basket"} className={styles.buttonBasket}>
                 <Icon
+                    className={styles.icon}
                     iconName="basket"
                 />
                 <div className={cn(styles.goodsCount, { [styles.goodsCount_visible]: !!productsInBasket.length })}>
