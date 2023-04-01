@@ -1,16 +1,23 @@
 import { FC } from "react";
 import { Icon } from "../../shared/Icon/Icon";
 import styles from "./Footer.module.scss";
-import cn from "classnames";
 import { Input } from "../../shared/Input/Input";
+import cn from "classnames";
 
 export const Footer: FC = () => {
     return (
         <footer className={styles._}>
             <div className={styles.wrapper}>
 
-                <div className={styles.column}>
-                    <Icon iconName="sultanLogoWhite" />
+                <div className={cn(styles.column, styles.promoBlock)}>
+
+                    <div className={styles.firtsRow}>
+                        <Icon className={styles.logo} iconName="sultanLogoWhite" />
+
+                        <button className={styles.downloadButton}>
+                            Прайс-лист <Icon iconName="download" />
+                        </button>
+                    </div>
 
                     <p className={styles.storeDescription}>
                         Компания «Султан» — снабжаем розничные магазины товарами "под ключ" в Кокчетаве и Акмолинской области
@@ -18,12 +25,19 @@ export const Footer: FC = () => {
 
                     <label className={styles.subscription}>
                         Подпишись на скидки и акции
-                        <Input className={styles.input} placeholder="Введите ваш E-mail" />
+                        <Input
+                            className={styles.input}
+                            placeholder="Введите ваш E-mail"
+                            postfix={
+                                <button className={styles.inputButton}>
+                                    <Icon iconName="vectorToRight" />
+                                </button>
+                            }
+                        />
                     </label>
-
                 </div>
 
-                <div className={styles.column}>
+                <div className={cn(styles.column, styles.menuBlock)}>
                     <h5 className={styles.title}>Меню сайта:</h5>
                     <ul className={styles.itemsList}>
                         <li><a className={styles.item} href="#">
@@ -41,7 +55,7 @@ export const Footer: FC = () => {
                     </ul>
                 </div>
 
-                <div className={styles.column}>
+                <div className={cn(styles.column, styles.categoryBlock)}>
                     <h5 className={styles.title}>Категории:</h5>
                     <ul className={styles.itemsList}>
                         <li><a className={styles.item} href="#">
@@ -62,7 +76,7 @@ export const Footer: FC = () => {
                     </ul>
                 </div>
 
-                <div className={styles.column}>
+                <div className={cn(styles.column, styles.messagersBlock)}>
                     <h5 className={styles.title}>Скачать прайс-лист:</h5>
                     <div className={styles.itemsList}>
                         <button className={styles.downloadButton}>
@@ -80,7 +94,7 @@ export const Footer: FC = () => {
                     </div>
                 </div>
 
-                <div className={styles.column}>
+                <div className={cn(styles.column, styles.contactsBlock)}>
                     <h5 className={styles.title}>Контакты:</h5>
 
                     <div className={styles.contact}>

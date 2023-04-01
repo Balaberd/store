@@ -1,15 +1,138 @@
 @import "/src/scss/vars.scss";
+@import "/src/scss/mixins.scss";
+@import "/src/scss/templates.scss";
 
-.desktop {
+._ {
+  @extend %template-container;
+
+  display: grid;
+  column-gap: 10px;
+  justify-content: space-between;
+  grid-template-rows: 61px 108px;
+  grid-template-areas:
+    "CNT CNT CNT NAV NAV NAV"
+    "ICO CTL CTL CLB DWN BSK";
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100vw;
+    border-top: 1px dotted $color-2;
+    opacity: 0.2;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 168px;
+    left: 0;
+    width: 100vw;
+    border-top: 1px dotted $color-2;
+    opacity: 0.2;
+
+    @media (max-width: $width-mobile) {
+      top: 100px;
+    }
+  }
+
+  @media (max-width: $width-mobile) {
+    grid-template-rows: 61px 40px;
+    grid-template-areas:
+      "DRP ICO ICO BSK"
+      "CTL CTL CTL CTL";
+  }
+}
+
+._ > * {
+  align-self: center;
+
+  @media (max-width: $width-mobile) {
+    justify-self: stretch;
+  }
+}
+
+.dropdown {
+  display: none;
+
+  @media (max-width: $width-mobile) {
+    display: flex;
+    grid-area: DRP;
+  }
+}
+
+.contactsBlock {
+  @include delimitedRowList(40px, 100%);
+  grid-area: CNT;
+
   @media (max-width: $width-mobile) {
     display: none;
   }
 }
 
-.mobile {
-  display: none;
+.navigateMenu {
+  grid-area: NAV;
+  justify-self: end;
 
   @media (max-width: $width-mobile) {
-    display: block;
+    display: none;
   }
+}
+.logo {
+  grid-area: ICO;
+  justify-self: center;
+
+  @media (max-width: $width-tablet) {
+    width: 97px;
+    height: 41px;
+  }
+}
+
+.catalogAndSearch {
+  grid-area: CTL;
+  @media (max-width: $width-mobile) {
+    justify-self: stretch;
+  }
+}
+
+.callback {
+  grid-area: CLB;
+
+  @media (max-width: $width-mobile) {
+    display: none;
+  }
+}
+
+.buttonDownload {
+  height: 59px;
+  width: 150px;
+
+  color: $color-9;
+  fill: $color-9;
+  stroke: $color-9;
+  background-color: $color-5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border-radius: 48px;
+  grid-area: DWN;
+
+  @media (max-width: $width-tablet) {
+    width: 120px;
+
+    .icon {
+      display: none;
+    }
+  }
+
+  @media (max-width: $width-mobile) {
+    display: none;
+  }
+}
+
+.basket {
+  grid-area: BSK;
 }

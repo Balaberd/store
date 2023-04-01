@@ -20,7 +20,7 @@ export const ProductSize: FC<Props> = ({ className, type, value }) => {
     return (
         <div className={cn(styles._, className)}>
             <Icon iconName={ICON_NAME_MAP[type]} />
-            <span className={styles.title}>{value}</span>
+            <span className={styles.title}>{value} {type === "weight" ? "гр" : "мл"}</span>
         </div>
     )
 }

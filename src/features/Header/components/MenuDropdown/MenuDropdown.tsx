@@ -1,15 +1,20 @@
-import React, { useState } from "react";
-import styles from "./MenuDropdown.module.scss";
+import { FC, useState } from "react";
 import { ContactItem } from "../ContactItem/ContactItem";
 import { NavigateMenu } from "../NavigateMenu/NavigateMenu";
 import { Icon } from "../../../../shared/Icon/Icon";
+import cn from "classnames";
+import styles from "./MenuDropdown.module.scss";
 
-export const MenuDropdown: React.FC = () => {
+interface Props {
+    className?: string;
+}
+
+export const MenuDropdown: FC<Props> = ({ className }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleVisibility = () => setIsOpen(!isOpen);
 
     return (
-        <div className={styles._}>
+        <div className={cn(styles._, className)}>
             <button
                 className={styles.triggerButton}
                 onClick={toggleVisibility}

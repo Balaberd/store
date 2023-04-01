@@ -8,6 +8,10 @@
 
   color: $color-9;
   background-color: $color-2;
+
+  @media (max-width: $width-mobile) {
+    padding: 15px 0;
+  }
 }
 
 .wrapper {
@@ -15,12 +19,27 @@
 
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: $width-mobile) {
+    display: grid;
+    justify-content: space-between;
+    justify-self: center;
+    row-gap: 30px;
+    grid-template-areas:
+      "PRO PRO"
+      "MNU CTG"
+      "CNT MSG";
+  }
 }
 
 .column {
   display: flex;
   flex-direction: column;
   gap: 25px;
+
+  @media (max-width: $width-mobile) {
+    gap: 20px;
+  }
 
   .title {
     font-size: 20px;
@@ -32,21 +51,40 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    @media (max-width: $width-mobile) {
+      font-size: 12px;
+    }
   }
+
   .item {
     line-height: 21px;
     color: $color-9;
   }
 }
 
-.downloadButton {
-  @include button(20px 51px, 5px, $color-9, $color-5);
-}
-
 .messagersBlock {
   display: flex;
   flex-direction: column;
   gap: 15px;
+
+  @media (max-width: $width-mobile) {
+    margin-top: 20px;
+  }
+
+  .downloadButton {
+    @include button(20px 51px, 5px, $color-9, $color-5);
+
+    @media (max-width: $width-mobile) {
+      display: none;
+    }
+  }
+
+  .title {
+    @media (max-width: $width-mobile) {
+      display: none;
+    }
+  }
 }
 
 .linksWrapper {
@@ -54,31 +92,83 @@
   gap: 10px;
 }
 
-.contact {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.promoBlock {
+  grid-area: PRO;
 
-  .subtitle {
-    font-weight: 600;
+  .inputButton {
+    @include button-icon(39px, $color-9, $color-5);
   }
-  .description {
-    font-size: 12px;
-  }
-  .link {
-    color: $color-9;
-    font-size: 10px;
-    text-decoration: underline;
-  }
-}
 
-.storeDescription {
-  margin-top: 15px;
-  max-width: 320px;
-}
-.subscription {
-  .input {
+  .firtsRow {
+    display: flex;
+    justify-content: space-between;
+
+    .downloadButton {
+      display: none;
+
+      @media (max-width: $width-mobile) {
+        display: flex;
+      }
+    }
+  }
+
+  .storeDescription {
     margin-top: 15px;
-    max-width: 282px;
+    max-width: 320px;
+
+    @media (max-width: $width-mobile) {
+      margin: 0;
+      gap: 15px;
+      max-width: 100%;
+    }
+  }
+  .subscription {
+    .input {
+      margin-top: 15px;
+      max-width: 282px;
+
+      @media (max-width: $width-mobile) {
+        max-width: 100%;
+      }
+    }
+  }
+
+  .logo {
+    @media (max-width: $width-mobile) {
+      width: 97px;
+    }
+  }
+}
+
+.menuBlock {
+  grid-area: MNU;
+}
+
+.categoryBlock {
+  grid-area: CTG;
+}
+
+.messagersBlock {
+  grid-area: MSG;
+}
+
+.contactsBlock {
+  grid-area: CNT;
+  .contact {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .subtitle {
+      font-weight: 600;
+    }
+    .description {
+      font-size: 12px;
+    }
+    .link {
+      color: $color-9;
+      font-size: 10px;
+      text-decoration: underline;
+    }
   }
 }
