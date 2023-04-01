@@ -12,10 +12,23 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
+
+  @media (max-width: $width-mobile) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .image {
   max-width: 100%;
+}
+
+.productInfo {
+  @media (max-width: $width-mobile) {
+    .sizeBlock {
+      display: none;
+    }
+  }
 }
 
 .title {
@@ -66,6 +79,18 @@
   grid-template-areas:
     "price price price increaseBlock increaseBlock increaseBlock addToBassket addToBassket . "
     "share promo promo promo promo promo promo download download";
+
+  @media (max-width: $width-mobile) {
+    grid-template-areas:
+      "price increaseBlock increaseBlock"
+      "addToBassket addToBassket share"
+      "basket basket share"
+      "promo promo promo"
+      "download download download";
+
+    justify-content: center;
+    row-gap: 20px;
+  }
 }
 .price {
   display: flex;

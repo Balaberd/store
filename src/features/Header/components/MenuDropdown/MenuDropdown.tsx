@@ -19,7 +19,8 @@ export const MenuDropdown: FC<Props> = ({ className }) => {
                 className={styles.triggerButton}
                 onClick={toggleVisibility}
             >
-                <Icon iconName="burgerMenu" />
+                {!isOpen && <Icon iconName="burgerMenu" />}
+                {isOpen && <Icon iconName="close" />}
             </button>
             {isOpen && (
                 <div className={styles.menu}>

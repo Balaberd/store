@@ -5,6 +5,8 @@
 ._ {
   @extend %template-container;
 
+  z-index: 100;
+
   display: grid;
   column-gap: 10px;
   justify-content: space-between;

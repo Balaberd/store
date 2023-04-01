@@ -140,6 +140,10 @@
   }
 }
 
+.downloadButton {
+  @include button(20px 51px, 5px, $color-9, $color-5);
+}
+
 .menuBlock {
   grid-area: MNU;
 }

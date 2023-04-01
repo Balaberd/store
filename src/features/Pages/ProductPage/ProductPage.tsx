@@ -32,7 +32,7 @@ export const ProductPage: FC = () => {
                             {product?.name} {product.brand} {product.description}
                         </div>
 
-                        <ProductSize type={product.sizeType} value={product.size} />
+                        <ProductSize className={styles.sizeBlock} type={product.sizeType} value={product.size} />
 
 
                         <div className={styles.actionsBlock}>
