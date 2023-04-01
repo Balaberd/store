@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useAppSelector } from "../../hooks/redux";
+import { useAppSelector } from "../hooks/redux";
 import {
   IProduct,
   TSorterType,
   TTypeOfProductApplications,
-} from "../../types/types";
+} from "../../lib/types/types";
 
 export const getUniqValuesInProduct = () => {
   const products = useAppSelector((state) => state.products);

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { productsMock } from "../../MOCK/MOCK";
-import { IProduct } from "../../types/types";
+import { productsMock } from "../../lib/mock/mock";
+import { IProduct } from "../../lib/types/types";
 
 const initialState: IProduct[] = [];
 

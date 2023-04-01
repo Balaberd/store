@@ -3,7 +3,7 @@ import {
   IFilteres,
   TSorterType,
   TTypeOfProductApplications,
-} from "../../types/types";
+} from "../../lib/types/types";
 
 const initialState: IFilteres = {
   priceFrom: null,
