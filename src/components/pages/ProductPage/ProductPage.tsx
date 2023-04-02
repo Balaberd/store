@@ -6,12 +6,26 @@ import { Breadcrumbs } from "../../widgets/Breadcrumbs/Breadcrumbs";
 import { ProductSize } from "../../widgets/ProductSize/ProductSize";
 import { Icon } from "../../ui/Icon/Icon";
 import { LandingPage } from "../LandingPage/LandingPage";
+import { useAppDispatch } from "../../../store/hooks/redux";
+import { addItemToBasket, refreshLocalStorageBasket, removeItemFromBasket } from "../../../store/reducers/basketSlice";
 
 export const ProductPage: FC = () => {
 
     const { id } = useParams();
     const product = getProductById(id);
     const numberOfProducts = getNumberOfProductsInBasket(id);
+
+    const dispatch = useAppDispatch();
+
+    const addItemProduct = (prodId: any) => {
+        dispatch(addItemToBasket(String(prodId)));
+        dispatch(refreshLocalStorageBasket());
+    }
+
+    const removeItemProduct = (prodId: any) => {
+        dispatch(removeItemFromBasket(String(prodId)))
+        dispatch(refreshLocalStorageBasket());
+    }
 
     if (product) {
         return (
@@ -37,9 +51,9 @@ export const ProductPage: FC = () => {
                             <span className={styles.price}>{product.price} Р</span>
 
                             <div className={styles.increaseAndDecreaseBlock}>
-                                <button className={styles.actionButton}>-</button>
+                                <button onClick={() => removeItemProduct(product.id)} className={styles.actionButton}>-</button>
                                 <span className={styles.count}>{numberOfProducts}</span>
-                                <button className={styles.actionButton}>+</button>
+                                <button onClick={() => addItemProduct(product.id)} className={styles.actionButton}>+</button>
                             </div>
 
                             <button className={styles.addToBasketButton}>

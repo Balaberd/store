@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks/redux";
-import { addItemToBasket, refreshLocalStorageBasket, removeItemFromBasket, removeProductFromBasket } from "../../../store/reducers/basketSlice";
+import { addItemToBasket, refreshLocalStorageBasket, removeAllItems, removeItemFromBasket, removeProductFromBasket } from "../../../store/reducers/basketSlice";
 import { getProdcutsIdInBasket } from "../../../store/selectors";
 import { IProduct } from "../../../lib/types/types";
 import styles from "./BasketPage.module.scss";
@@ -11,6 +11,7 @@ export const BasketPage: FC = () => {
 
     const productsInBasket = getProdcutsIdInBasket();
     const basket = useAppSelector(state => state.basket);
+    const [isModalActive, setIsModalActive] = useState(false);
 
     const sumPrice = productsInBasket.reduce((acc, product) => {
         return acc + (product.price * basket[product.id])
@@ -31,9 +32,23 @@ export const BasketPage: FC = () => {
         dispatch(refreshLocalStorageBasket());
     }
 
+    const placeOnOrderHandler = () => {
+        dispatch(removeAllItems());
+        dispatch(refreshLocalStorageBasket());
+        setIsModalActive(true);
+        setTimeout(() => setIsModalActive(false), 3000);
+    }
+
+
     return (
         <div className={styles._}>
             <Breadcrumbs />
+
+            {isModalActive && (
+                <div className={styles.modal}>
+                    СПАСИБО ЗА ЗАКАЗ
+                </div>
+            )}
 
             <h1 className={styles.title}>КОРЗИНА</h1>
 
@@ -55,7 +70,7 @@ export const BasketPage: FC = () => {
                     </div>
 
                     <div className={styles.sumPriceBlock}>
-                        <button className={styles.placeAnOrderButton}>
+                        <button onClick={placeOnOrderHandler} className={styles.placeAnOrderButton}>
                             Оформить заказ
                         </button>
 

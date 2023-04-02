@@ -24,18 +24,22 @@ const basketSlice = createSlice({
     removeItemFromBasket(state, action: PayloadAction<string>) {
       const id = action.payload;
       const quantity = state[id]
-      if(quantity === 1) {
-        delete state[id]
+      if(quantity < 1) {
+        return
       } else {
         state[id] = --state[id];
       }
     },
     removeProductFromBasket(state,  action: PayloadAction<string>) {
       delete state[action.payload]
+    },
+    removeAllItems() {
+      localStorage.setItem("basket", JSON.stringify({}));
+      return initialState;
     }
   },
 });
 
-export const { getBasketFromLocalStorage, addItemToBasket, refreshLocalStorageBasket, removeItemFromBasket, removeProductFromBasket } = basketSlice.actions;
+export const { getBasketFromLocalStorage, addItemToBasket, refreshLocalStorageBasket, removeItemFromBasket, removeProductFromBasket, removeAllItems } = basketSlice.actions;
 
 export default basketSlice.reducer;

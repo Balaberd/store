@@ -7,6 +7,30 @@
   min-height: 60vh;
 }
 
+.modal {
+  position: fixed;
+  top: calc(50% - 367px);
+  left: calc(50% - 212px);
+
+  width: 735px;
+  height: 424px;
+
+  background-color: white;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+
+  border-radius: 8px;
+
+  @extend %template-box-shadow;
+}
+
 .title {
   margin-top: 50px;
   font-size: 40px;
