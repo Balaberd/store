@@ -29,6 +29,7 @@ export const App: FC = () => {
         <Route path="/catalog/:id" element={<ProductPage />} />
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="*" element={<CatalogPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -41,11 +41,13 @@
 
 /*** *** *** mixin markup *** *** ***/
 
-.mobileSorter {
-  display: none;
+.filteresBlock {
+  .mobileSorter {
+    display: none;
 
-  @media (max-width: $width-mobile) {
-    display: flex;
-    margin-top: 15px;
+    @media (max-width: $width-mobile) {
+      display: flex;
+      margin-top: 15px;
+    }
   }
 }

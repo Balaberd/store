@@ -7,11 +7,16 @@ import { CatalogAndSearch } from "../../blocks/Header/CatalogAndSearch/CatalogAn
 import { CallbackOrder } from "../../blocks/Header/CallbackOrder/CallbackOrder";
 import { Basket } from "../../blocks/Header/Basket/Basket";
 import styles from "./Header.module.scss";
+import { Link } from "react-router-dom";
 
 export const Header: FC = () => {
 
     return (
         <header className={styles._}>
+
+            <Link to={"/admin"} className={styles.adminLink}>
+                ADMIN PANEL
+            </Link>
 
             <MenuDropdown className={styles.dropdown} />
 
