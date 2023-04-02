@@ -4,8 +4,8 @@ import { addItemToBasket, refreshLocalStorageBasket, removeItemFromBasket, remov
 import { getProdcutsIdInBasket } from "../../../store/selectors";
 import { IProduct } from "../../../lib/types/types";
 import styles from "./BasketPage.module.scss";
-import { Breadcrumbs } from "../../widgets/Breadcrumbs/Breadcrumbs";
 import { BasketProductItem } from "../../blocks/BasketPage/BasketProductItem/BasketProductItem";
+import { Breadcrumbs } from "../../widgets/Breadcrumbs/Breadcrumbs";
 
 export const BasketPage: FC = () => {
 

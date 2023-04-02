@@ -1,0 +1,134 @@
+@import "/src/scss/vars.scss";
+@import "/src/scss/templates.scss";
+@import "/src/scss/mixins.scss";
+
+.productSetBlock {
+  width: 50%;
+}
+
+.optionsWrapper {
+  margin-top: 25px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  font-size: 16px;
+
+  & > * {
+    padding: 15px 10px;
+    border: 1px solid $color-5;
+    border-radius: 18px;
+  }
+
+  .subtitle {
+    font-weight: 800;
+  }
+
+  .input {
+    width: 100%;
+    height: 34px;
+    padding: 0 10px;
+    margin-top: 10px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    background-color: $color-10;
+  }
+
+  .radios {
+    margin-top: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    .radio {
+      height: 34px;
+      padding: 0 10px;
+
+      display: flex;
+      align-items: center;
+      align-items: center;
+
+      border-radius: 10px;
+
+      background-color: $color-10;
+
+      &_active {
+        font-weight: 900;
+        background-color: $color-5;
+      }
+    }
+
+    input {
+      display: none;
+    }
+  }
+
+  .checkboxes {
+    margin-top: 10px;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    .checkbox {
+      height: 34px;
+      padding: 0 10px;
+
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+
+      border-radius: 10px;
+
+      background-color: $color-10;
+
+      &_active {
+        font-weight: 900;
+        background-color: $color-5;
+      }
+    }
+
+    input {
+      display: none;
+    }
+  }
+}
+
+.actionBlock {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.actionButton {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: $color-9;
+
+  &:hover {
+    color: $color-2;
+  }
+
+  &_set {
+    background-color: $color-5;
+  }
+
+  &_delete {
+    background-color: red;
+  }
+
+  &_apply {
+    background-color: green;
+  }
+
+  &_cancel {
+    background-color: $color-5;
+  }
+}

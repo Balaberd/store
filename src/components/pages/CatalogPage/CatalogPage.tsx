@@ -16,7 +16,7 @@ export const CatalogPage: FC = () => {
 
       <div className={styles.titleRow}>
         <h1 className={styles.title}>Каталог</h1>
-        <Sorter />
+        <Sorter className={styles.sorter}/>
       </div>
 
       <FilterProductByApply />

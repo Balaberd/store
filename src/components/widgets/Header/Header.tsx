@@ -9,6 +9,7 @@ import { Basket } from "../../blocks/Header/Basket/Basket";
 import styles from "./Header.module.scss";
 
 export const Header: FC = () => {
+
     return (
         <header className={styles._}>
 

@@ -1,7 +1,7 @@
 @import "/src/scss/vars.scss";
 @import "/src/scss/mixins.scss";
 
-._ {
+.breadcrumbs {
   display: flex;
   align-items: center;
 
@@ -18,10 +18,30 @@
   }
 }
 
-.link {
+.crumb {
   color: $color-2;
 
   &_last {
     opacity: 0.5;
+  }
+}
+
+.goBackButton {
+  display: none;
+
+  @media (max-width: $width-mobile) {
+    margin-top: 20px;
+    
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    color: $color-2;
+    font-size: 10px;
+    font-weight: 600;
+
+    .icon {
+      @include button-icon(32px, $color-2, $color-10);
+    }
   }
 }

@@ -29,6 +29,7 @@ export const Pagination: FC<Props> = ({ numberOfPages, currentPage }) => {
   for (let i = 1; i <= numberOfPages; i++) {
     pages.push(
       <button
+        key={i}
         onClick={() => changeCurrentPageHandler(i)}
         className={cn(styles.pageButton, {
           [styles.pageButton_active]: i === currentPage,

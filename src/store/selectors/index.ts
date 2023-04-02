@@ -30,9 +30,12 @@ export const getUniqValuesInProduct = () => {
   };
 };
 
-export const getProductById = (id: number) => {
+export const getProductById = (id: string | undefined) => {
+  if(!id) {
+    return;
+  }
   return useAppSelector((state) =>
-    state.products.find((product) => product.id === id)
+    state.products.find((product) => product.id === +id)
   );
 };
 
@@ -133,3 +136,12 @@ export const getFilteredAndSortedProducts = () => {
 export const getProductCountInBasket = (id: number) => {
   return useAppSelector(state => state.basket[String(id)])
 }
+
+export const getNumberOfProductsInBasket = (id: string | undefined) => {
+  if(!id) {
+    return;
+  }
+  const numberOfProducts = useAppSelector(state => state.basket[+id]);
+  return numberOfProducts ? numberOfProducts : 0;
+}
+

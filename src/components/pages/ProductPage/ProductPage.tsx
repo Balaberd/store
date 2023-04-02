@@ -1,19 +1,17 @@
 import { FC } from "react";
-import { useLocation } from "react-router-dom";
-import { useAppSelector } from "../../../store/hooks/redux";
-import { getProductById } from "../../../store/selectors";
+import { useParams } from "react-router-dom";
+import { getNumberOfProductsInBasket, getProductById } from "../../../store/selectors";
 import styles from "./ProductPage.module.scss";
 import { Breadcrumbs } from "../../widgets/Breadcrumbs/Breadcrumbs";
 import { ProductSize } from "../../widgets/ProductSize/ProductSize";
 import { Icon } from "../../ui/Icon/Icon";
-
+import { LandingPage } from "../LandingPage/LandingPage";
 
 export const ProductPage: FC = () => {
-    const id = useLocation().state.productId;
-    const product = getProductById(+id);
 
-    let numberOfProducts = useAppSelector(state => state.basket[id]);
-    numberOfProducts = numberOfProducts ? numberOfProducts : 0;
+    const { id } = useParams();
+    const product = getProductById(id);
+    const numberOfProducts = getNumberOfProductsInBasket(id);
 
     if (product) {
         return (
@@ -86,7 +84,7 @@ export const ProductPage: FC = () => {
             </div>
         )
     } else {
-        return <></>
+        return <LandingPage />
     }
 
 }

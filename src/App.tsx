@@ -9,6 +9,7 @@ import { CatalogPage } from "./components/pages/CatalogPage/CatalogPage";
 import { ProductPage } from "./components/pages/ProductPage/ProductPage";
 import { BasketPage } from "./components/pages/BasketPage/BasketPage";
 import { Footer } from "./components/widgets/Footer/Footer";
+import { AdminPage } from "./components/pages/AdminPage/AdminPage";
 
 
 export const App: FC = () => {
@@ -27,6 +28,7 @@ export const App: FC = () => {
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/catalog/:id" element={<ProductPage />} />
         <Route path="/basket" element={<BasketPage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

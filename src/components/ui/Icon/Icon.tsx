@@ -25,6 +25,8 @@ import { ReactComponent as IconVisa } from "../../../public/assets/icons/visa.sv
 import { ReactComponent as IconSultanLogoWhite } from "../../../public/assets/icons/sultanLogoWhite.svg";
 import { ReactComponent as IconTelegram } from "../../../public/assets/icons/telegram.svg";
 import { ReactComponent as IconWhatsap } from "../../../public/assets/icons/whatsap.svg";
+import { ReactComponent as IconGoBack } from "../../../public/assets/icons/navVector.svg";
+
 
 interface IconMap {
     [key: string]: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
@@ -55,6 +57,7 @@ const ICON_MAP: IconMap = {
     sultanLogoWhite: IconSultanLogoWhite,
     telegram: IconTelegram,
     whatsap: IconWhatsap,
+    goBack: IconGoBack,
 };
 
 interface Props {
