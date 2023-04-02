@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import cn from "classnames";
-import styles from "./ProductSetBlock.module.scss";
+import styles from "./ProductCreateBlock.module.scss";
 
 const APPLICATION_TYPES_TRANSLATE = {
   body: "Средство за уходом тела",
@@ -12,25 +12,24 @@ const APPLICATION_TYPES_TRANSLATE = {
   feet: "Средство за уходом ног",
 };
 
-export const ProductSetBlock = ({
-  productFofSetting,
-  closeBlockHandler,
-  applyProductChanges,
+export const ProductCreateBlock = ({
+  stopCreatingProductHandler,
+  createNewProduct,
 }) => {
   const [nameValue, setNameValue] = useState("");
-  const [sizeType, setSizeType] = useState(productFofSetting.sizeType);
+  const [sizeType, setSizeType] = useState("volume");
   const [size, setSize] = useState();
   const [producingСountries, setProducingСountries] = useState("");
   const [brand, setBrand] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productTypesOfApplication, setProductTypesOfApplication] = useState({
-    body: productFofSetting.typesOfApplication.includes("body"),
-    face: productFofSetting.typesOfApplication.includes("face"),
-    hands: productFofSetting.typesOfApplication.includes("hands"),
-    wash: productFofSetting.typesOfApplication.includes("wash"),
-    cosmetics: productFofSetting.typesOfApplication.includes("cosmetics"),
-    hair: productFofSetting.typesOfApplication.includes("hair"),
-    feet: productFofSetting.typesOfApplication.includes("feet"),
+    body: false,
+    face: false,
+    hands: false,
+    wash: false,
+    cosmetics: false,
+    hair: false,
+    feet: false,
   });
   const [imageIrl, setImageUrl] = useState("");
   const [price, setPrice] = useState();
@@ -44,6 +43,7 @@ export const ProductSetBlock = ({
       [type]: !productTypesOfApplication[type],
     });
   };
+
   const changeNameHandler = ({ target: { value } }) => {
     setNameValue(value);
   };
@@ -66,57 +66,50 @@ export const ProductSetBlock = ({
     setImageUrl(value);
   };
 
-  const applyChanges = () => {
+  const createNewProductHandler = () => {
     const newProduct = {
-      id: productFofSetting.id,
-      name: nameValue.trim() ? nameValue.trim() : productFofSetting.name,
+      name: nameValue,
       sizeType: sizeType,
-      size: size ? size : productFofSetting.size,
-      producingСountries: producingСountries
-        ? producingСountries
-        : productFofSetting.producingСountries,
-      brand: brand ? brand : productFofSetting.brand,
-      description: productDescription.trim()
-        ? productDescription.trim()
-        : productFofSetting.description,
-      price: price ? price : productFofSetting.price,
-      typesOfApplication: Object.values(productTypesOfApplication),
-      url: imageIrl.trim() ? imageIrl.trim() : productFofSetting.url,
+      size: size,
+      producingСountries: producingСountries,
+      brand: brand,
+      description: productDescription,
+      price: price,
+      typesOfApplication: Object.entries(productTypesOfApplication)
+        .filter((el) => el[1])
+        .map((el) => el[0]),
+      url: imageIrl,
     };
-    localStorage.setItem("products", JSON.stringify(newProduct));
-    applyChanges(newProduct);
+
+    console.log(newProduct);
+
+    createNewProduct(newProduct);
   };
 
   return (
-    <div className={styles.productSetBlock}>
+    <div className={styles._}>
+      <h2 className={styles.title}>ДОБАВИТЬ НОВЫЙ ПРОДУКТ</h2>
+
       <div className={styles.actionBlock}>
         <button
-          onClick={applyChanges}
+          onClick={createNewProductHandler}
           className={cn(styles.actionButton, styles.actionButton_apply)}
         >
-          ПРИМЕНИТЬ
+          СОЗДАТЬ
         </button>
 
         <button
           className={cn(styles.actionButton, styles.actionButton_cancel)}
-          onClick={closeBlockHandler}
+          onClick={stopCreatingProductHandler}
         >
-          ОТМЕНИТЬ ИЗМЕНЕНИЯ
+          ОТМЕНА
         </button>
       </div>
 
       <div className={styles.optionsWrapper}>
         <div>
           <div>
-            <span className={styles.subtitle}>ID: </span>
-            {productFofSetting.id}
-          </div>
-        </div>
-
-        <div>
-          <div>
             <span className={styles.subtitle}>Наименование: </span>
-            {productFofSetting.name}
           </div>
           <input
             onChange={changeNameHandler}
@@ -129,7 +122,6 @@ export const ProductSetBlock = ({
         <div>
           <div>
             <span className={styles.subtitle}>Тип размера продукта: </span>
-            {productFofSetting.sizeType === "weight" ? "Вес" : "Объем"}
           </div>
 
           <div className={styles.radios}>
@@ -164,7 +156,6 @@ export const ProductSetBlock = ({
         <div>
           <div>
             <span className={styles.subtitle}>Размер: </span>
-            {productFofSetting.size}
           </div>
           <input
             onChange={changeSizeHandler}
@@ -177,7 +168,6 @@ export const ProductSetBlock = ({
         <div>
           <div>
             <span className={styles.subtitle}>Цена: </span>
-            {productFofSetting.price}
           </div>
           <input
             onChange={changePriceHandler}
@@ -190,7 +180,6 @@ export const ProductSetBlock = ({
         <div>
           <div>
             <span className={styles.subtitle}>Страна-производитель: </span>
-            {productFofSetting.producingСountries}
           </div>
           <input
             onChange={changeProducingСountriesHandler}
@@ -203,7 +192,6 @@ export const ProductSetBlock = ({
         <div>
           <div>
             <span className={styles.subtitle}>Брэнд: </span>
-            {productFofSetting.brand}
           </div>
           <input
             onChange={changeBrandHandler}
@@ -216,7 +204,6 @@ export const ProductSetBlock = ({
         <div>
           <div>
             <span className={styles.subtitle}>Описание: </span>
-            {productFofSetting.description}
           </div>
           <input
             onChange={changeProductDescriptionHandler}
@@ -229,11 +216,6 @@ export const ProductSetBlock = ({
         <div>
           <div>
             <span className={styles.subtitle}>Типы применения: </span>
-            <ul>
-              {productFofSetting.typesOfApplication.map((type) => (
-                <li>{APPLICATION_TYPES_TRANSLATE[type]}</li>
-              ))}
-            </ul>
           </div>
 
           <div className={styles.checkboxes}>
@@ -257,7 +239,6 @@ export const ProductSetBlock = ({
         <div>
           <div>
             <span className={styles.subtitle}>Ссылка на изображение: </span>
-            {productFofSetting.url}
           </div>
           <input
             onChange={changeImageUrlHandler}
