@@ -12,6 +12,7 @@ export type TPrice = number | null;
 export type TSorterType = "name" | "price";
 
 export interface IFilteres {
+    isGeneralFiltersActive: boolean;
     priceFrom: TPrice;
     priceTo: TPrice;
     brands: string[];

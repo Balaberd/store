@@ -31,7 +31,7 @@ export const getUniqValuesInProduct = () => {
 };
 
 export const getProductById = (id: string | undefined) => {
-  if(!id) {
+  if (!id) {
     return;
   }
   return useAppSelector((state) =>
@@ -92,7 +92,9 @@ export const getFilteredAndSortedProducts = () => {
     !isApplyingFilterActive &&
     !isCountryesFilterActive
   ) {
-    return [...products].sort((a, b) => sortByProp(a, b, sortBy, isIncreaseSorting));
+    return [...products].sort((a, b) =>
+      sortByProp(a, b, sortBy, isIncreaseSorting)
+    );
   }
 
   for (let i = 0; i < products.length; i++) {
@@ -107,22 +109,29 @@ export const getFilteredAndSortedProducts = () => {
       ? filteres.brands.includes(products[i].brand)
       : true;
 
-    const productApplyList = products[i].typesOfApplication;
-
-    const conditionForTypeApplyFilter = isApplyingFilterActive
-      ? checkHaveSameElements(productApplyList, filteres.productApplyingTypes)
-      : true;
-
     const conditionForCountryesFilter = isCountryesFilterActive
       ? filteres.producerСountries.includes(products[i].producingСountries)
       : true;
 
-    if (
+    const productApplyList = products[i].typesOfApplication;
+    const conditionForTypeApplyFilter = isApplyingFilterActive
+      ? checkHaveSameElements(productApplyList, filteres.productApplyingTypes)
+      : true;
+
+    if (!filteres.isGeneralFiltersActive) {
+      if (conditionForTypeApplyFilter) {
+        result.push(products[i]);
+      }
+      continue;
+    }
+
+    const condition =
       conditionForPriceFilter &&
       conditionForBrandFilter &&
-      conditionForTypeApplyFilter &&
-      conditionForCountryesFilter
-    ) {
+      conditionForCountryesFilter &&
+      conditionForTypeApplyFilter;
+
+    if (condition) {
       result.push(products[i]);
     } else {
       continue;
@@ -132,15 +141,14 @@ export const getFilteredAndSortedProducts = () => {
   return result.sort((a, b) => sortByProp(a, b, sortBy, isIncreaseSorting));
 };
 
-
 export const getProductCountInBasket = (id: number) => {
-  return useAppSelector(state => state.basket[String(id)])
-}
+  return useAppSelector((state) => state.basket[String(id)]);
+};
 
 export const getNumberOfProductsInBasket = (id: string | undefined) => {
-  if(!id) {
+  if (!id) {
     return;
   }
-  const numberOfProducts = useAppSelector(state => state.basket[+id]);
+  const numberOfProducts = useAppSelector((state) => state.basket[+id]);
   return numberOfProducts ? numberOfProducts : 0;
-}
+};

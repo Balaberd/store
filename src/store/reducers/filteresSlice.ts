@@ -6,6 +6,7 @@ import {
 } from "../../lib/types/types";
 
 const initialState: IFilteres = {
+  isGeneralFiltersActive: false,
   priceFrom: null,
   priceTo: null,
   brands: [],
@@ -28,51 +29,75 @@ const filtersSlice = createSlice({
       state: IFilteres,
       action: PayloadAction<TTypeOfProductApplications>
     ) {
+      let newApplyingTypesList;
       if (state.productApplyingTypes.includes(action.payload)) {
-        state.productApplyingTypes = state.productApplyingTypes.filter(
+        newApplyingTypesList = state.productApplyingTypes.filter(
           (types) => types !== action.payload
         );
       } else {
-        state.productApplyingTypes = [
-          ...state.productApplyingTypes,
-          action.payload,
-        ];
+        newApplyingTypesList = [...state.productApplyingTypes, action.payload];
       }
+      return {
+        ...state,
+        isGeneralFiltersActive: false,
+        productApplyingTypes: newApplyingTypesList,
+      };
     },
     toggleBrandFilterValue(state: IFilteres, action: PayloadAction<string>) {
+      let newBrandsList;
       if (state.brands.includes(action.payload)) {
-        state.brands = state.brands.filter((types) => types !== action.payload);
+        newBrandsList = state.brands.filter(
+          (types) => types !== action.payload
+        );
       } else {
-        state.brands = [...state.brands, action.payload];
+        newBrandsList = [...state.brands, action.payload];
       }
+      return { ...state, isGeneralFiltersActive: false, brands: newBrandsList };
     },
     toggleProducerСountryFilterValue(
       state: IFilteres,
       action: PayloadAction<string>
     ) {
+      let newCountriesList;
       if (state.producerСountries.includes(action.payload)) {
-        state.producerСountries = state.producerСountries.filter(
+        newCountriesList = state.producerСountries.filter(
           (types) => types !== action.payload
         );
       } else {
-        state.producerСountries = [...state.producerСountries, action.payload];
+        newCountriesList = [...state.producerСountries, action.payload];
       }
+      return {
+        ...state,
+        isGeneralFiltersActive: false,
+        producerСountries: newCountriesList,
+      };
     },
     resetFilteres() {
       return initialState;
     },
     changeFilterPriceFrom(state: IFilteres, action: PayloadAction<number>) {
-      state.priceFrom = action.payload;
+      return {
+        ...state,
+        isGeneralFiltersActive: false,
+        priceFrom: action.payload,
+      };
     },
     changeFilterPriceTo(state: IFilteres, action: PayloadAction<number>) {
-      state.priceTo = action.payload;
+      return {
+        ...state,
+        isGeneralFiltersActive: false,
+        priceTo: action.payload,
+      };
     },
     toggleSortDirection(state) {
       state.isIncreaseSorting = !state.isIncreaseSorting;
     },
     changeCurrentPage(state, action) {
       state.currentPage = action.payload;
-    }
+    },
+    activateGeneralFilteres(state) {
+      state.isGeneralFiltersActive = true;
+    },
   },
 });
 
@@ -85,7 +110,8 @@ export const {
   changeFilterPriceFrom,
   changeFilterPriceTo,
   toggleSortDirection,
-  changeCurrentPage
+  changeCurrentPage,
+  activateGeneralFilteres,
 } = filtersSlice.actions;
 
 export default filtersSlice.reducer;
