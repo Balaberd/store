@@ -1,28 +1,34 @@
-import { useState } from "react";
+import React, { FC, useState } from "react";
 import cn from "classnames";
 import styles from "./ProductCreateBlock.module.scss";
+import { APPLYING_TYPES_TRANSLATE, checkIsUrl, listOfProductApplicationTypes } from "../../../../lib/const";
+import { IProduct, TSizeType, TTypeOfProductApplications } from "../../../../lib/types/types";
 
-const APPLICATION_TYPES_TRANSLATE = {
-  body: "Средство за уходом тела",
-  face: "Средство за уходом лица",
-  hands: "Средство за уходом рук",
-  wash: "Средство для стирки",
-  cosmetics: "Косметика",
-  hair: "Средство за уходом за волосами",
-  feet: "Средство за уходом ног",
+
+const createChangerTextValues = (setter: (value: string) => void) => {
+  return (event: React.ChangeEvent<HTMLInputElement>) => setter(event.target.value);
 };
 
-export const ProductCreateBlock = ({
-  stopCreatingProductHandler,
-  createNewProduct,
-}) => {
-  const [nameValue, setNameValue] = useState("");
-  const [sizeType, setSizeType] = useState("volume");
-  const [size, setSize] = useState();
+type TProductApply = {
+  [key in TTypeOfProductApplications]: boolean;
+}
+
+interface Props {
+  stopProductCreate: () => void;
+  createNewProduct: (product: IProduct) => void;
+  newProductId: number;
+}
+
+export const ProductCreateBlock: FC<Props> = ({ stopProductCreate, newProductId, createNewProduct }) => {
+  const [name, setName] = useState("");
+  const [sizeType, setSizeType] = useState<TSizeType>("volume");
+  const [size, setSize] = useState("");
   const [producingСountries, setProducingСountries] = useState("");
   const [brand, setBrand] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [productTypesOfApplication, setProductTypesOfApplication] = useState({
+  const [description, setDescription] = useState("");
+  const [url, setUrl] = useState("");
+  const [price, setPrice] = useState("");
+  const [typesOfApplication, setTypesOfApplication] = useState<TProductApply>({
     body: false,
     face: false,
     hands: false,
@@ -31,59 +37,47 @@ export const ProductCreateBlock = ({
     hair: false,
     feet: false,
   });
-  const [imageIrl, setImageUrl] = useState("");
-  const [price, setPrice] = useState();
 
-  const changePriceHandler = ({ target: { value } }) => {
-    setPrice(value);
+  const isValidValues = {
+    name: !!name.trim(),
+    size: !!size.trim(),
+    producingСountries: !!producingСountries.trim(),
+    brand: !!brand.trim(),
+    description: !!description.trim(),
+    url: checkIsUrl(url),
+    price: !!price.trim() && +price > 0,
+    typesOfApplication: Object.entries(typesOfApplication).some(prop => prop[1]),
+  }
+
+  const toggleSizeTypeHandler = (newType: TSizeType) => {
+    setSizeType(newType);
   };
-  const handleChangeApplyType = (type) => {
-    setProductTypesOfApplication({
-      ...productTypesOfApplication,
-      [type]: !productTypesOfApplication[type],
+  const toggleApplyType = (type: TTypeOfProductApplications) => {
+    setTypesOfApplication({
+      ...typesOfApplication,
+      [type]: !typesOfApplication[type],
     });
   };
 
-  const changeNameHandler = ({ target: { value } }) => {
-    setNameValue(value);
-  };
-  const toggleSizeTypeHandler = (newType) => {
-    setSizeType(newType);
-  };
-  const changeSizeHandler = ({ target: { value } }) => {
-    setSize(+value);
-  };
-  const changeProducingСountriesHandler = ({ target: { value } }) => {
-    setProducingСountries(value);
-  };
-  const changeBrandHandler = ({ target: { value } }) => {
-    setBrand(value);
-  };
-  const changeProductDescriptionHandler = ({ target: { value } }) => {
-    setProductDescription(value);
-  };
-  const changeImageUrlHandler = ({ target: { value } }) => {
-    setImageUrl(value);
-  };
-
   const createNewProductHandler = () => {
-    const newProduct = {
-      name: nameValue,
-      sizeType: sizeType,
-      size: size,
-      producingСountries: producingСountries,
-      brand: brand,
-      description: productDescription,
-      price: price,
-      typesOfApplication: Object.entries(productTypesOfApplication)
-        .filter((el) => el[1])
-        .map((el) => el[0]),
-      url: imageIrl,
-    };
 
-    console.log(newProduct);
+    if (Object.values(isValidValues).every(el => el)) {
 
-    createNewProduct(newProduct);
+      const keys: Array<keyof TProductApply> = Object.keys(typesOfApplication) as Array<keyof TProductApply>;
+
+      createNewProduct({
+        id: newProductId,
+        name,
+        sizeType,
+        size: +size,
+        producingСountries,
+        brand,
+        description,
+        price: +price,
+        typesOfApplication: keys.filter(el => typesOfApplication[el]),
+        url,
+      })
+    }
   };
 
   return (
@@ -100,26 +94,27 @@ export const ProductCreateBlock = ({
 
         <button
           className={cn(styles.actionButton, styles.actionButton_cancel)}
-          onClick={stopCreatingProductHandler}
+          onClick={stopProductCreate}
         >
           ОТМЕНА
         </button>
       </div>
 
       <div className={styles.optionsWrapper}>
-        <div>
+
+        <div className={cn(styles.propWrapper, { [styles.invalid]: !isValidValues.name })}>
           <div>
             <span className={styles.subtitle}>Наименование: </span>
           </div>
           <input
-            onChange={changeNameHandler}
+            onChange={createChangerTextValues(setName)}
             className={styles.input}
             type="text"
             placeholder="введите новое значение"
           />
         </div>
 
-        <div>
+        <div className={styles.propWrapper}>
           <div>
             <span className={styles.subtitle}>Тип размера продукта: </span>
           </div>
@@ -153,99 +148,103 @@ export const ProductCreateBlock = ({
           </div>
         </div>
 
-        <div>
+        <div className={cn(styles.propWrapper, { [styles.invalid]: !isValidValues.size })}>
           <div>
             <span className={styles.subtitle}>Размер: </span>
           </div>
           <input
-            onChange={changeSizeHandler}
+            onChange={createChangerTextValues(setSize)}
             className={styles.input}
             type="number"
             placeholder="введите новое значение"
           />
         </div>
 
-        <div>
+        <div className={cn(styles.propWrapper, { [styles.invalid]: !isValidValues.price })}>
           <div>
             <span className={styles.subtitle}>Цена: </span>
           </div>
           <input
-            onChange={changePriceHandler}
+            onChange={createChangerTextValues(setPrice)}
             className={styles.input}
             type="number"
             placeholder="введите новое значение"
           />
         </div>
 
-        <div>
+        <div className={cn(styles.propWrapper, { [styles.invalid]: !isValidValues.producingСountries })}>
           <div>
             <span className={styles.subtitle}>Страна-производитель: </span>
           </div>
           <input
-            onChange={changeProducingСountriesHandler}
+            onChange={createChangerTextValues(setProducingСountries)}
             className={styles.input}
             type="text"
             placeholder="введите новое значение"
           />
         </div>
 
-        <div>
+        <div className={cn(styles.propWrapper, { [styles.invalid]: !isValidValues.brand })}>
           <div>
             <span className={styles.subtitle}>Брэнд: </span>
           </div>
           <input
-            onChange={changeBrandHandler}
+            onChange={createChangerTextValues(setBrand)}
             className={styles.input}
             type="text"
             placeholder="введите новое значение"
           />
         </div>
 
-        <div>
+        <div className={cn(styles.propWrapper, { [styles.invalid]: !isValidValues.description })}>
           <div>
             <span className={styles.subtitle}>Описание: </span>
           </div>
           <input
-            onChange={changeProductDescriptionHandler}
+            onChange={createChangerTextValues(setDescription)}
             className={styles.input}
             type="text"
             placeholder="введите новое значение"
           />
         </div>
 
-        <div>
+        <div className={cn(styles.propWrapper, { [styles.invalid]: !isValidValues.typesOfApplication })}>
           <div>
             <span className={styles.subtitle}>Типы применения: </span>
           </div>
 
           <div className={styles.checkboxes}>
-            {Object.keys(productTypesOfApplication).map((type) => (
+            {listOfProductApplicationTypes.map((type) => (
               <label
+                key={type}
                 className={cn(styles.checkbox, {
-                  [styles.checkbox_active]: productTypesOfApplication[type],
+                  [styles.checkbox_active]: typesOfApplication[type],
                 })}
               >
                 <input
-                  onChange={() => handleChangeApplyType(type)}
+                  onChange={() => toggleApplyType(type)}
                   type="checkbox"
-                  checked={productTypesOfApplication[type]}
+                  checked={typesOfApplication[type]}
                 />
-                <span>{APPLICATION_TYPES_TRANSLATE[type]}</span>
+                <span>{APPLYING_TYPES_TRANSLATE[type]}</span>
               </label>
             ))}
           </div>
         </div>
 
-        <div>
+        <div className={cn(styles.propWrapper, { [styles.invalid]: !isValidValues.url })}>
           <div>
             <span className={styles.subtitle}>Ссылка на изображение: </span>
           </div>
           <input
-            onChange={changeImageUrlHandler}
+            onChange={createChangerTextValues(setUrl)}
             className={styles.input}
             type="text"
             placeholder="введите новое значение"
           />
+          <div className={styles.imageWrapper}>
+            <img className={styles.image} src={url} alt="изображение не найдено" />
+          </div>
         </div>
       </div>
     </div>

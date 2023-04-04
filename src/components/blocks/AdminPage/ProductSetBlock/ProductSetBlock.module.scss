@@ -2,7 +2,7 @@
 @import "/src/scss/templates.scss";
 @import "/src/scss/mixins.scss";
 
-.productSetBlock {
+._ {
   width: 50%;
 }
 
@@ -15,10 +15,14 @@
 
   font-size: 16px;
 
-  & > * {
+  .propWrapper {
     padding: 15px 10px;
     border: 1px solid $color-5;
     border-radius: 18px;
+
+    &.invalid {
+      border: 5px solid red;
+    }
   }
 
   .subtitle {
@@ -101,6 +105,7 @@
 }
 
 .actionBlock {
+  margin-top: 25px;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -130,5 +135,12 @@
 
   &_cancel {
     background-color: $color-5;
+  }
+}
+
+.imageWrapper {
+  .image {
+    max-width: 100%;
+    max-height: 100%;
   }
 }

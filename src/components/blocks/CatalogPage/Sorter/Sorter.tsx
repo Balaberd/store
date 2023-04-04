@@ -54,7 +54,7 @@ export const Sorter: FC<Props> = ({ className }) => {
               className={styles.radio}
               type="radio"
               name="sort-type"
-              checked={sortBy === "name"}
+              defaultChecked={sortBy === "name"}
               onClick={() => {
                 handleChangeSortSettings("name");
                 onToggleDropdown();
@@ -67,7 +67,7 @@ export const Sorter: FC<Props> = ({ className }) => {
               className={styles.radio}
               type="radio"
               name="sort-type"
-              checked={sortBy === "price"}
+              defaultChecked={sortBy === "price"}
               onClick={() => {
                 handleChangeSortSettings("price")
                 onToggleDropdown()

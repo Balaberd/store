@@ -15,7 +15,7 @@ export const Header: FC = () => {
         <header className={styles._}>
 
             <Link to={"/admin"} className={styles.adminLink}>
-                ADMIN PANEL
+                ADMIN
             </Link>
 
             <MenuDropdown className={styles.dropdown} />

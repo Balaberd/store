@@ -144,4 +144,3 @@ export const getNumberOfProductsInBasket = (id: string | undefined) => {
   const numberOfProducts = useAppSelector(state => state.basket[+id]);
   return numberOfProducts ? numberOfProducts : 0;
 }
-

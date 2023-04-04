@@ -19,9 +19,11 @@
   font-weight: 500;
   text-transform: uppercase;
 }
-.sorter {
-  @media (max-width: $width-mobile) {
-    display: none;
+.titleRow {
+  .sorter {
+    @media (max-width: $width-mobile) {
+      display: none;
+    }
   }
 }
 

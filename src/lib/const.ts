@@ -24,3 +24,8 @@ export const listOfProductApplicationTypes: TTypeOfProductApplications[] = [
   "hair",
   "feet",
 ];
+
+export const checkIsUrl = (url: string) => {
+  const pattern = /^(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/;
+  return pattern.test(url);
+};
