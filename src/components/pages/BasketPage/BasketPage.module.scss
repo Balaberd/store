@@ -8,27 +8,43 @@
 }
 
 .modal {
-  position: fixed;
-  top: calc(50% - 367px);
-  left: calc(50% - 212px);
-
-  width: 735px;
-  height: 424px;
-
-  background-color: white;
-  z-index: 10;
+  border-radius: 8px;
+  padding: 115px 106px;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 20px;
 
-  font-size: 40px;
-  line-height: 48px;
-  font-weight: 500;
-
-  border-radius: 8px;
+  position: relative;
 
   @extend %template-box-shadow;
+
+  .modalIcon {
+    background-color: $color-5;
+    width: 59px;
+    height: 59px;
+    border-radius: 50%;
+    padding: 17.5px;
+  }
+  .modalTitle {
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 500;
+  }
+  .modalSubtitle {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 300;
+    color: $color-2;
+  }
+  .modalCloseButton {
+    fill: $color-5;
+    stroke: $color-5;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+  }
 }
 
 .title {

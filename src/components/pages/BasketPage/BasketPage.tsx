@@ -6,6 +6,8 @@ import { IProduct } from "../../../lib/types/types";
 import styles from "./BasketPage.module.scss";
 import { BasketProductItem } from "../../blocks/BasketPage/BasketProductItem/BasketProductItem";
 import { Breadcrumbs } from "../../widgets/Breadcrumbs/Breadcrumbs";
+import { Modal } from "../../ui/Modal/Modal";
+import { Icon } from "../../ui/Icon/Icon";
 
 export const BasketPage: FC = () => {
 
@@ -36,7 +38,6 @@ export const BasketPage: FC = () => {
         dispatch(removeAllItems());
         dispatch(refreshLocalStorageBasket());
         setIsModalActive(true);
-        setTimeout(() => setIsModalActive(false), 3000);
     }
 
 
@@ -45,9 +46,16 @@ export const BasketPage: FC = () => {
             <Breadcrumbs />
 
             {isModalActive && (
-                <div className={styles.modal}>
-                    СПАСИБО ЗА ЗАКАЗ
-                </div>
+                <Modal classNames={styles.modal} onModalClose={() => setIsModalActive(false)}>
+                    <Icon className={styles.modalIcon} iconName="doubleArrow" />
+                    <h5 className={styles.modalTitle}>СПАСИБО ЗА ЗАКАЗ</h5>
+                    <span className={styles.modalSubtitle}>
+                        Наш менеджер свяжется с вами в ближайшее время
+                    </span>
+                    <button onClick={() => setIsModalActive(false)} className={styles.modalCloseButton}>
+                        <Icon iconName="close" />
+                    </button>
+                </Modal>
             )}
 
             <h1 className={styles.title}>КОРЗИНА</h1>

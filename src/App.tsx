@@ -10,6 +10,7 @@ import { ProductPage } from "./components/pages/ProductPage/ProductPage";
 import { BasketPage } from "./components/pages/BasketPage/BasketPage";
 import { Footer } from "./components/widgets/Footer/Footer";
 import { AdminPage } from "./components/pages/AdminPage/AdminPage";
+import { Modal } from "./components/ui/Modal/Modal";
 
 
 export const App: FC = () => {
@@ -32,6 +33,7 @@ export const App: FC = () => {
         <Route path="*" element={<CatalogPage />} />
       </Routes>
       <Footer />
+      {/* <Modal>123</Modal> */}
     </BrowserRouter>
   );
 };
