@@ -1,6 +1,6 @@
 import { FC } from "react";
 import cn from "classnames";
-import styles from "./FilterProductByApply.module.scss";
+import styles from "./FilterByApply.module.scss";
 import { useAppDispatch, useAppSelector } from "../../../../store/hooks/redux";
 import { TTypeOfProductApplications } from "../../../../lib/types/types";
 import { toggleApplicationFilterValue } from "../../../../store/reducers/filteresSlice";
@@ -12,7 +12,7 @@ interface Props {
   isColumnList?: boolean
 }
 
-export const FilterProductByApply: FC<Props> = ({
+export const FilterByApply: FC<Props> = ({
   className,
   isColumnList,
 }) => {

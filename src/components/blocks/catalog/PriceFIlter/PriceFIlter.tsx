@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styles from "./PriceFIlter.module.scss";
-import { useAppDispatch, useAppSelector } from "../../../../../store/hooks/redux";
-import { changeFilterPriceFrom, changeFilterPriceTo } from "../../../../../store/reducers/filteresSlice";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks/redux";
+import { changeFilterPriceFrom, changeFilterPriceTo } from "../../../../store/reducers/filteresSlice";
 
 
 type Event = React.ChangeEvent<HTMLInputElement>;

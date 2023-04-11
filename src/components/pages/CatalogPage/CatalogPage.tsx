@@ -1,12 +1,10 @@
 import { FC } from "react";
-
-import styles from "./CatalogPage.module.scss";
 import { Breadcrumbs } from "../../widgets/Breadcrumbs/Breadcrumbs";
-import { Sorter } from "../../blocks/CatalogPage/Sorter/Sorter";
-import { FilterProductByApply } from "../../blocks/CatalogPage/FilterProductByApply/FilterProductByApply";
-import { GenaralFilters } from "../../blocks/CatalogPage/GenaralFilters/GenaralFilters";
-import { ProductList } from "../../blocks/CatalogPage/ProductList/ProductList";
-
+import { Sorter } from "../../blocks/catalog/Sorter/Sorter";
+import { FilterByApply } from "../../blocks/catalog/FilterByApply/FilterByApply";
+import { ProductList } from "../../widgets/ProductList/ProductList";
+import { MainFilteres } from "../../widgets/MainFilteres/MainFilteres";
+import styles from "./CatalogPage.module.scss";
 
 
 export const CatalogPage: FC = () => {
@@ -16,16 +14,16 @@ export const CatalogPage: FC = () => {
 
       <div className={styles.titleRow}>
         <h1 className={styles.title}>Каталог</h1>
-        <Sorter className={styles.sorter}/>
+        <Sorter className={styles.sorter} />
       </div>
 
-      <FilterProductByApply />
+      <FilterByApply />
 
       <div className={styles.contentWrapper}>
 
         <div className={styles.filteresBlock}>
-          <GenaralFilters />
-          <FilterProductByApply isColumnList />
+          <MainFilteres />
+          <FilterByApply isColumnList />
           <Sorter className={styles.mobileSorter} />
         </div>
 

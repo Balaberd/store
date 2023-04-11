@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getNumberOfProductsInBasket, getProductById } from "../../../store/selectors";
 import styles from "./ProductPage.module.scss";
 import { Breadcrumbs } from "../../widgets/Breadcrumbs/Breadcrumbs";
-import { ProductSize } from "../../widgets/ProductSize/ProductSize";
+import { ProductSize } from "../../ui/ProductSize/ProductSize";
 import { Icon } from "../../ui/Icon/Icon";
 import { LandingPage } from "../LandingPage/LandingPage";
 import { useAppDispatch } from "../../../store/hooks/redux";

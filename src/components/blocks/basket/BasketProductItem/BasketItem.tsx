@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { getProductCountInBasket } from "../../../../store/selectors";
 import { IProduct } from "../../../../lib/types/types";
-import styles from "./BasketProductItem.module.scss";
+import styles from "./BasketItem.module.scss";
 import { Icon } from "../../../ui/Icon/Icon";
 
 export const ICON_NAME_MAP: any = {
@@ -16,7 +16,7 @@ interface Props {
     removeProductFromBasketHandler: (id: number) => void;
 }
 
-export const BasketProductItem: FC<Props> = ({ product, increaseItemHandler, decreaseItemHandler, removeProductFromBasketHandler }) => {
+export const BasketItem: FC<Props> = ({ product, increaseItemHandler, decreaseItemHandler, removeProductFromBasketHandler }) => {
 
     const productCount = getProductCountInBasket(product.id);
     const productSumPrice = productCount * product.price;

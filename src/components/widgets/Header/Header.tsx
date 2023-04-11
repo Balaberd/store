@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { MenuDropdown } from "../../blocks/Header/MenuDropdown/MenuDropdown";
-import { ContactItem } from "../../blocks/Header/ContactItem/ContactItem";
-import { NavigateMenu } from "../../blocks/Header/NavigateMenu/NavigateMenu";
+import { MenuDropdown } from "../../blocks/header/MenuDropdown/MenuDropdown";
+import { ContactItem } from "../../blocks/header/ContactItem/ContactItem";
+import { NavigateMenu } from "../../blocks/header/NavigateMenu/NavigateMenu";
 import { Icon } from "../../ui/Icon/Icon";
-import { CatalogAndSearch } from "../../blocks/Header/CatalogAndSearch/CatalogAndSearch";
-import { CallbackOrder } from "../../blocks/Header/CallbackOrder/CallbackOrder";
-import { Basket } from "../../blocks/Header/Basket/Basket";
+import { CatalogAndSearch } from "../../blocks/header/CatalogAndSearch/CatalogAndSearch";
+import { CallbackOrder } from "../../blocks/header/CallbackOrder/CallbackOrder";
+import { Basket } from "../../blocks/header/Basket/Basket";
 import styles from "./Header.module.scss";
 import { Link } from "react-router-dom";
 

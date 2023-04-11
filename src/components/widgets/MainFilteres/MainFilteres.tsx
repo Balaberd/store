@@ -1,20 +1,17 @@
 import { FC, useState } from "react";
-import { FilterByProductProp } from "./FilterItem/FilterByProductProp";
-import { PriceFIlter } from "./PriceFIlter/PriceFIlter";
-import cn from "classnames";
-import styles from "./GenaralFilters.module.scss";
-import { useDispatch } from "react-redux";
-import { getUniqValuesInProduct } from "../../../../store/selectors";
-import {
-  activateGeneralFilteres,
-  resetFilteres,
-  toggleBrandFilterValue,
-  toggleProducerСountryFilterValue,
-} from "../../../../store/reducers/filteresSlice";
-import { Icon } from "../../../ui/Icon/Icon";
-import { useAppSelector } from "../../../../store/hooks/redux";
 
-export const GenaralFilters: FC = () => {
+import cn from "classnames";
+import styles from "./MainFilteres.module.scss";
+import { useDispatch } from "react-redux";
+import { getUniqValuesInProduct } from "../../../store/selectors";
+import { useAppSelector } from "../../../store/hooks/redux";
+import { activateGeneralFilteres, resetFilteres, toggleBrandFilterValue, toggleProducerСountryFilterValue } from "../../../store/reducers/filteresSlice";
+import { Icon } from "../../ui/Icon/Icon";
+import { FilterByProductProp } from "../../blocks/catalog/FilterByProductProp/FilterByProductProp";
+import { PriceFIlter } from "../../blocks/catalog/PriceFIlter/PriceFIlter";
+
+
+export const MainFilteres: FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const onChangeVisibility = () => {
     setIsVisible(!isVisible);

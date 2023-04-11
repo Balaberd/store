@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { Pagination } from "../Pagination/Pagination";
-import { ProductCard } from "./ProductCard/ProductCard";
+import { getFilteredAndSortedProducts } from "../../../store/selectors";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/redux";
+import { addItemToBasket, refreshLocalStorageBasket } from "../../../store/reducers/basketSlice";
+import { ProductItem } from "../../blocks/catalog/ProductItem/ProductItem";
+import { Pagination } from "../../blocks/catalog/Pagination/Pagination";
 import styles from "./ProductList.module.scss";
-import { getFilteredAndSortedProducts } from "../../../../store/selectors";
-import { useAppDispatch, useAppSelector } from "../../../../store/hooks/redux";
-import { addItemToBasket, refreshLocalStorageBasket } from "../../../../store/reducers/basketSlice";
 
 export const ProductList: FC = () => {
   const products = getFilteredAndSortedProducts();
@@ -33,7 +33,7 @@ export const ProductList: FC = () => {
       {!productsForPage.length && <h2 className={styles.nothingFound}>Ничего не найдено...</h2>}
       <div className={styles.listWrapper}>
         {productsForPage.map((product) => (
-          <ProductCard
+          <ProductItem
             numberOfProductsInBasket={basket[product.id]}
             key={product.id}
             product={product}

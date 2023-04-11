@@ -1,10 +1,10 @@
 import { FC, useState } from "react";
-import { Checkbox } from "./Checkbox/Checkbox";
 import cn from "classnames";
 import styles from "./FilterByProductProp.module.scss";
-import { useAppSelector } from "../../../../../store/hooks/redux";
-import { Input } from "../../../../ui/Input/Input";
-import { Icon } from "../../../../ui/Icon/Icon";
+import { useAppSelector } from "../../../../store/hooks/redux";
+import { Input } from "../../../ui/Input/Input";
+import { Icon } from "../../../ui/Icon/Icon";
+import { Checkbox } from "../../../ui/Checkbox/Checkbox";
 
 
 const FILTER_TYPE_TRANSLATE = {

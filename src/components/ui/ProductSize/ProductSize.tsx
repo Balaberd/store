@@ -1,6 +1,6 @@
 import { FC } from "react";
 import cn from "classnames";
-import { Icon } from "../../ui/Icon/Icon";
+import { Icon } from "../Icon/Icon";
 import { TSizeType } from "../../../lib/types/types";
 import styles from "./ProductSize.module.scss";
 

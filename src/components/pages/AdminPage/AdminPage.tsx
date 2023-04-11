@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import cn from "classnames";
 import styles from "./AdminPage.module.scss";
-import { ProductCreateBlock } from "../../blocks/AdminPage/ProductCreateBlock/ProductCreateBlock";
-import { ProductItem } from "../../blocks/AdminPage/ProductItem/ProductItem";
+import { ProductCreateBlock } from "../../blocks/admin/ProductCreateBlock/ProductCreateBlock";
+import { ProductItem } from "../../blocks/admin/ProductItem/ProductItem";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks/redux";
 import { IProduct } from "../../../lib/types/types";
 import {
@@ -11,7 +11,7 @@ import {
   removeProduct,
   setProduct,
 } from "../../../store/reducers/productsSlice";
-import { ProductSetBlock } from "../../blocks/AdminPage/ProductSetBlock/ProductSetBlock";
+import { ProductSetBlock } from "../../blocks/admin/ProductSetBlock/ProductSetBlock";
 
 export const AdminPage: FC = () => {
   const [settingsProduct, setSettingsProduct] = useState<IProduct | null>(null);

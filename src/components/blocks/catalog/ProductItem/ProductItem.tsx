@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import styles from "./ProductCard.module.scss";
+import styles from "./ProductItem.module.scss";
 import cn from "classnames";
-import { IProduct } from "../../../../../lib/types/types";
-import { ProductSize } from "../../../../widgets/ProductSize/ProductSize";
-import { Icon } from "../../../../ui/Icon/Icon";
+import { IProduct } from "../../../../lib/types/types";
+import { ProductSize } from "../../../ui/ProductSize/ProductSize";
+import { Icon } from "../../../ui/Icon/Icon";
 
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
   numberOfProductsInBasket: number;
 }
 
-export const ProductCard: FC<Props> = ({
+export const ProductItem: FC<Props> = ({
   product: {
     id,
     name,

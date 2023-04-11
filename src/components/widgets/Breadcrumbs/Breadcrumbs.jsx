@@ -1,7 +1,6 @@
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Breadcrumbs.module.scss";
 import cn from "classnames";
-import { productsMock } from "../../../lib/mock/mock";
 import { getProductById } from "../../../store/selectors";
 import { Icon } from "../../ui/Icon/Icon";
 
@@ -18,11 +17,6 @@ const CRUMBS_MAP = {
 export const Breadcrumbs = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const params = useParams();
-
-  // console.log("location", location);
-  // console.log("navigate", navigate);
-  // console.log("params", params);
 
   const crumbs = location.pathname.split("/").filter((el) => !!el);
 
@@ -64,7 +58,7 @@ export const Breadcrumbs = () => {
 
       <button className={styles.goBackButton} onClick={goBackHandler}>
         <div className={styles.icon}>
-          <Icon iconName="goBack"  />
+          <Icon iconName="goBack" />
         </div>
         НАЗАД
       </button>

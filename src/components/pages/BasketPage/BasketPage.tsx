@@ -4,10 +4,10 @@ import { addItemToBasket, refreshLocalStorageBasket, removeAllItems, removeItemF
 import { getProdcutsIdInBasket } from "../../../store/selectors";
 import { IProduct } from "../../../lib/types/types";
 import styles from "./BasketPage.module.scss";
-import { BasketProductItem } from "../../blocks/BasketPage/BasketProductItem/BasketProductItem";
 import { Breadcrumbs } from "../../widgets/Breadcrumbs/Breadcrumbs";
 import { Modal } from "../../ui/Modal/Modal";
 import { Icon } from "../../ui/Icon/Icon";
+import { BasketItem } from "../../blocks/basket/BasketProductItem/BasketItem";
 
 export const BasketPage: FC = () => {
 
@@ -68,7 +68,7 @@ export const BasketPage: FC = () => {
                 <>
                     <div className={styles.itemsList}>
                         {productsInBasket.map((product: IProduct) => (
-                            <BasketProductItem
+                            <BasketItem
                                 product={product}
                                 increaseItemHandler={increaseItemHandler}
                                 decreaseItemHandler={decreaseItemHandler}
