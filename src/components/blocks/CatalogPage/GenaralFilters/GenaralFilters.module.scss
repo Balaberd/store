@@ -4,6 +4,11 @@
 ._ {
   display: flex;
   flex-direction: column;
+  width: 238px;
+
+  @media (max-width: $width-tablet) {
+    width: auto;
+  }
 }
 
 .title {
